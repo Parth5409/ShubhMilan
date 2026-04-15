@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#67529a",
+            "secondary": "#a43b38",
+            "tertiary-fixed-dim": "#e9c349",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#494550",
+            "inverse-on-surface": "#f2f0f4",
+            "outline-variant": "#cbc4d1",
+            "surface": "#faf9fc",
+            "on-primary-fixed-variant": "#4f3a80",
+            "tertiary-container": "#cca730",
+            "secondary-fixed-dim": "#ffb3ad",
+            "on-tertiary-fixed": "#241a00",
+            "primary-fixed": "#e9ddff",
+            "on-secondary-fixed-variant": "#842323",
+            "on-tertiary": "#ffffff",
+            "surface-container": "#efedf1",
+            "on-error": "#ffffff",
+            "surface-container-low": "#f5f3f7",
+            "on-secondary-fixed": "#410004",
+            "on-secondary": "#ffffff",
+            "error": "#ba1a1a",
+            "secondary-container": "#fc7d76",
+            "on-surface": "#1b1b1e",
+            "on-primary-container": "#bba3f2",
+            "surface-container-lowest": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-variant": "#e3e2e6",
+            "on-secondary-container": "#711517",
+            "on-primary-fixed": "#220852",
+            "tertiary-fixed": "#ffe088",
+            "on-tertiary-container": "#4f3e00",
+            "primary": "#341e64",
+            "inverse-surface": "#303033",
+            "surface-container-high": "#e9e7eb",
+            "background": "#faf9fc",
+            "on-background": "#1b1b1e",
+            "outline": "#7a7581",
+            "on-tertiary-fixed-variant": "#574500",
+            "surface-container-highest": "#e3e2e6",
+            "secondary-fixed": "#ffdad7",
+            "tertiary": "#735c00",
+            "inverse-primary": "#d0bcff",
+            "surface-dim": "#dbd9dd",
+            "primary-fixed-dim": "#d0bcff",
+            "primary-container": "#4b367c",
+            "error-container": "#ffdad6",
+            "surface-bright": "#faf9fc"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Manrope"],
+            "body": ["Noto Serif"],
+            "label": ["Manrope"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .serif-italic { font-family: 'Noto Serif', serif; font-style: italic; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #341e64 0%, #4b367c 100%); }
+    .bg-gradient-accept { background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%); }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed">
+<!-- TopNavBar (Shared Component) -->
+<nav class="bg-surface/80 dark:bg-slate-950/80 backdrop-blur-md docked full-width top-0 sticky z-50 no-border tonal-shift-bg flat no shadows">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black tracking-tight text-indigo-950 dark:text-indigo-100 font-headline">SoulSync AI</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors font-label text-sm font-semibold" href="#">Discover</a>
+<a class="text-indigo-950 dark:text-white border-b-2 border-indigo-900 dark:border-indigo-400 pb-1 font-label text-sm font-semibold" href="#">Matches</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors font-label text-sm font-semibold" href="#">Messages</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors font-label text-sm font-semibold" href="#">Journal</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="bg-gradient-primary text-on-primary px-6 py-2 rounded-full font-label text-sm font-semibold hover:opacity-80 transition-all">Upgrade</button>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-primary-fixed">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="portrait of a professional woman with a warm smile in soft studio lighting, high-end editorial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFqz9OwueLpLuIAF5aAN_cBWWuZSHlR_mqe2A6kfryh1Qy1PGzWTq0c3Ssf2Ow1m5d1wz_hSqXAPQpm-ouS7An4pi17BHesQUQqESsiP8MlF3Coo_ve7E6z-AoqqdWE6Twgaf8dLNky-gicU2fGQgADvVz3OmZgFpqNv4zHHgKQBpHlTYqPF1Tiilf8cTwp3EEpx9V22-cqzdCKpBEshns7eyBTt_9kbpXtrgc-SITDBlLcgxKXePzAr1ubwd_ssAqXL5rIzNaCrk"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-4xl mx-auto px-6 py-12">
+<!-- Header Section -->
+<header class="mb-12">
+<h1 class="font-headline text-5xl font-extrabold text-primary tracking-tight mb-4">Connection Requests</h1>
+<p class="text-on-surface-variant max-w-xl leading-relaxed">Manage your intentional connections. Each request represents a potential shared future in our digital sanctuary.</p>
+</header>
+<!-- Tab Interface -->
+<div class="flex space-x-12 mb-10 border-b border-outline-variant/15">
+<button class="pb-4 border-b-2 border-primary text-primary font-headline font-bold flex items-center space-x-2">
+<span>Received</span>
+<span class="bg-primary-container text-primary-fixed-dim px-2 py-0.5 rounded-full text-xs">12</span>
+</button>
+<button class="pb-4 border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors font-headline font-medium flex items-center space-x-2">
+<span>Sent</span>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full text-xs">4</span>
+</button>
+</div>
+<!-- TAB 1: RECEIVED (Active Content) -->
+<section class="space-y-8">
+<!-- Match Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row group transition-all duration-300 hover:translate-y-[-4px]">
+<div class="w-full md:w-48 h-64 md:h-auto overflow-hidden relative">
+<img alt="Anirudh V." class="w-full h-full object-cover" data-alt="Handsome young man in a linen shirt standing in a sunlit garden, soft focus background, editorial photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw8PgT8Z5tLdD4a8jMCTxxFz4xenYyUnOvZSgEDrF6fPlz4VvAUNqk94LxulJCYn9FfyRAJKKSD75jSL4tadizgf0hmpi3v4MQciZHWe8KlPvLeZbYtEjh0stKEivCT8IEbdSbDhXUuNBnZWwPVSLihmz0slWJDhE-s0nAMh-7kODLd5YfRUnANM2oN0n2UEf0VqNNAxc6EeLzIo6K1AazN6YBtKbqpPlTuEpXigwE33dl8qDO05YbNIz6T9wnMpHKxRDzK-rH3Sw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+<div class="flex-1 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-2xl font-bold text-on-surface">Anirudh Verma, 29</h3>
+<p class="text-on-surface-variant font-medium flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                Bangalore, India
+              </p>
+</div>
+<div class="bg-tertiary-container text-on-tertiary-container px-3 py-1.5 rounded-xl font-headline font-bold text-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              94% Match
+            </div>
+</div>
+<p class="font-body italic text-on-surface-variant mb-6 line-clamp-2">"A lifelong student of architecture and philosophy, looking for someone who appreciates the silence between the notes..."</p>
+<div class="flex flex-wrap items-center justify-between gap-4">
+<a class="text-primary font-headline font-semibold text-sm underline underline-offset-4 hover:opacity-70 transition-opacity" href="#">View Detailed Profile</a>
+<div class="flex items-center space-x-3">
+<button class="px-6 py-2.5 rounded-full bg-surface-container-low text-secondary font-headline font-bold text-sm hover:bg-secondary-fixed transition-colors">
+                Decline
+              </button>
+<button class="px-8 py-2.5 rounded-full bg-gradient-accept text-white font-headline font-bold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-green-900/10">
+                Accept Interest
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Match Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row group transition-all duration-300 hover:translate-y-[-4px]">
+<div class="w-full md:w-48 h-64 md:h-auto overflow-hidden relative">
+<img alt="Priya S." class="w-full h-full object-cover" data-alt="Woman with elegant jewelry and traditional attire, soft warm lighting, cinematic depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhxMxOtZy8EoVdKI1CWsjaWy1_vtB1D-8-mHv_j-2m64M20oPN1XHeIAGFV_W4SW_y-P830QGhxIrJOCK4aAJ-KNdnhOEbo3IeNsGjfd3XW25jC10thvCQGBCGQuoe14IS6bupDX_P7WILA-rBGj1npC8y4rBE5udpWxBnVnwE3_hZ2B-8eLHCMfTtqC3_7X2kgOtXZY8KG6oMUq3WKVMeeM-4Zy-Sz2Mu-GqK5krIY2D9I6Vi8Vg6jWc7XaqFnx8xDDg79pCZIXI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+<div class="flex-1 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-2xl font-bold text-on-surface">Priya Sharma, 27</h3>
+<p class="text-on-surface-variant font-medium flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                Mumbai, India
+              </p>
+</div>
+<div class="bg-tertiary-container text-on-tertiary-container px-3 py-1.5 rounded-xl font-headline font-bold text-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              88% Match
+            </div>
+</div>
+<p class="font-body italic text-on-surface-variant mb-6 line-clamp-2">"Founding designer at a tech startup. When I'm not pixels-pushing, I'm usually lost in a Noto Serif book or tending to my balcony garden."</p>
+<div class="flex flex-wrap items-center justify-between gap-4">
+<a class="text-primary font-headline font-semibold text-sm underline underline-offset-4 hover:opacity-70 transition-opacity" href="#">View Detailed Profile</a>
+<div class="flex items-center space-x-3">
+<button class="px-6 py-2.5 rounded-full bg-surface-container-low text-secondary font-headline font-bold text-sm hover:bg-secondary-fixed transition-colors">
+                Decline
+              </button>
+<button class="px-8 py-2.5 rounded-full bg-gradient-accept text-white font-headline font-bold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-green-900/10">
+                Accept Interest
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Placeholder for Sent (Hidden in this mockup view) -->
+<!-- 
+    <section class="hidden space-y-6">
+      <div class="bg-surface-container-low p-6 rounded-xl flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <img src="image-placeholder" class="w-16 h-16 rounded-full object-cover">
+          <div>
+            <h4 class="font-headline font-bold">Vikram Malhotra</h4>
+            <p class="text-xs text-on-surface-variant">Sent 2 days ago</p>
+          </div>
+        </div>
+        <div class="bg-tertiary-fixed text-on-tertiary-fixed px-4 py-1.5 rounded-full flex items-center space-x-2 text-sm font-bold">
+          <span class="material-symbols-outlined text-sm">schedule</span>
+          <span>Pending</span>
+        </div>
+      </div>
+    </section>
+    -->
+<!-- Empty State (Conditional Display) -->
+<div class="hidden flex flex-col items-center justify-center py-24 text-center">
+<div class="w-48 h-48 mb-8 bg-surface-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-7xl text-outline-variant" style="font-variation-settings: 'wght' 200;">inbox</span>
+</div>
+<h2 class="font-headline text-3xl font-bold text-primary mb-2">A Moment of Stillness</h2>
+<p class="text-on-surface-variant font-body serif-italic text-lg">No connection requests are waiting for you at this time.</p>
+<button class="mt-8 bg-gradient-primary text-on-primary px-10 py-3 rounded-full font-headline font-bold">Discover New Connections</button>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-slate-100 dark:border-slate-900 bg-slate-50 dark:bg-slate-950 mt-20">
+<div class="space-y-6">
+<div class="text-xl font-bold text-indigo-950 dark:text-indigo-100 font-headline">SoulSync AI</div>
+<p class="font-body text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs">
+        © 2024 SoulSync AI. A Digital Sanctuary for Life's Greatest Decision.
+      </p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col space-y-4">
+<span class="font-label text-xs tracking-widest text-indigo-900 dark:text-indigo-300 uppercase">Sanctuary</span>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 font-body text-sm transition-opacity hover:opacity-70" href="#">Philosophy</a>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 font-body text-sm transition-opacity hover:opacity-70" href="#">Privacy Sanctuary</a>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-label text-xs tracking-widest text-indigo-900 dark:text-indigo-300 uppercase">Legal</span>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 font-body text-sm transition-opacity hover:opacity-70" href="#">Terms of Connection</a>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 font-body text-sm transition-opacity hover:opacity-70" href="#">Support</a>
+</div>
+</div>
+<div class="flex flex-col space-y-4 md:items-end">
+<span class="font-label text-xs tracking-widest text-indigo-900 dark:text-indigo-300 uppercase">Manifesto</span>
+<p class="font-body text-sm text-slate-500 dark:text-slate-400 italic text-right">
+        "Love is not something you find. Love is something that finds you."
+      </p>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10 px-6 py-3 flex justify-between items-center z-50">
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-label font-bold uppercase mt-1">Discover</span>
+</button>
+<button class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-[10px] font-label font-bold uppercase mt-1">Matches</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-label font-bold uppercase mt-1">Messages</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-label font-bold uppercase mt-1">Profile</span>
+</button>
+</div>
+</body></html>

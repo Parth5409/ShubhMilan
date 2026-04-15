@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verification Center | SoulSync AI Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#67529a",
+                        "secondary": "#a43b38",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#494550",
+                        "inverse-on-surface": "#f2f0f4",
+                        "outline-variant": "#cbc4d1",
+                        "surface": "#faf9fc",
+                        "on-primary-fixed-variant": "#4f3a80",
+                        "tertiary-container": "#cca730",
+                        "secondary-fixed-dim": "#ffb3ad",
+                        "on-tertiary-fixed": "#241a00",
+                        "primary-fixed": "#e9ddff",
+                        "on-secondary-fixed-variant": "#842323",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#efedf1",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f5f3f7",
+                        "on-secondary-fixed": "#410004",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fc7d76",
+                        "on-surface": "#1b1b1e",
+                        "on-primary-container": "#bba3f2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e3e2e6",
+                        "on-secondary-container": "#711517",
+                        "on-primary-fixed": "#220852",
+                        "tertiary-fixed": "#ffe088",
+                        "on-tertiary-container": "#4f3e00",
+                        "primary": "#341e64",
+                        "inverse-surface": "#303033",
+                        "surface-container-high": "#e9e7eb",
+                        "background": "#faf9fc",
+                        "on-background": "#1b1b1e",
+                        "outline": "#7a7581",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "surface-container-highest": "#e3e2e6",
+                        "secondary-fixed": "#ffdad7",
+                        "tertiary": "#735c00",
+                        "inverse-primary": "#d0bcff",
+                        "surface-dim": "#dbd9dd",
+                        "primary-fixed-dim": "#d0bcff",
+                        "primary-container": "#4b367c",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#faf9fc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Noto Serif"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Noto Serif', serif; }
+        h1, h2, h3, button, label, span { font-family: 'Manrope', sans-serif; }
+        .glass-panel {
+            background: rgba(250, 249, 252, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="bg-slate-50 dark:bg-slate-900 flex flex-col h-screen w-64 border-r border-slate-200 dark:border-slate-800 sticky top-0 shrink-0">
+<div class="px-6 py-8">
+<div class="text-lg font-bold text-indigo-950 dark:text-indigo-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="settings_heart">settings_heart</span>
+                Admin Console
+            </div>
+<p class="text-[10px] tracking-wider uppercase text-slate-500 mt-1">Verification Authority</p>
+</div>
+<nav class="flex-1 space-y-1 px-3">
+<!-- Active Item: Verification Center -->
+<a class="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-200 font-bold rounded-r-full flex items-center gap-3 px-4 py-3 scale-95 transition-transform group" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="text-xs tracking-wider uppercase">Verification Center</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-3 px-4 py-3 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-xs tracking-wider uppercase">Member Insights</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-3 px-4 py-3 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="flag">flag</span>
+<span class="text-xs tracking-wider uppercase">Flagged Content</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-3 px-4 py-3 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings_heart">settings_heart</span>
+<span class="text-xs tracking-wider uppercase">System Health</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-3 px-4 py-3 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-xs tracking-wider uppercase">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3 mb-4">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="professional portrait of a male executive in a well-lit office setting with blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDihQNcayyV6H5ctcc17_FZDfipEtdZqgu3NWdf0dVBIvjm9HYUEh9Gb_x-1qn9jOHeXz8yyrCLfSBXVysZWP_7RZQhgksSqXrMequi57xRicr24OaC8T99w5LoyET1IRdm9l37xmI5MO7-toPa-CgyGqIgv0KVuwbkfklYECIzMMe5Vi7fTjru5Xwt1lMzT1vAV_9ddf6nUuiVtLRKvBjmxdTjIGf1YKpIxvw18iZ3Fs1rB1tLcvnFIWQahX8R1C76f9EIHyf-Ofs"/>
+<div>
+<p class="text-sm font-bold">Marcus Chen</p>
+<p class="text-[10px] text-on-surface-variant">Lead Verifier</p>
+</div>
+</div>
+<button class="w-full py-2 px-4 bg-primary text-on-primary rounded-full text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                Review Pending
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-x-hidden">
+<!-- Header / Stats -->
+<header class="p-8 pb-4">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="text-3xl font-extrabold text-primary tracking-tight">Verification Center</h1>
+<p class="text-on-surface-variant italic font-body">Ensuring the integrity of the SoulSync Sanctuary.</p>
+</div>
+<div class="flex gap-2">
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">stars</span> Admin Access
+                    </span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl border-b-4 border-primary">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Total Users</p>
+<p class="text-2xl font-black text-on-surface">12,842</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-b-4 border-secondary">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Pending Review</p>
+<p class="text-2xl font-black text-secondary">148</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-b-4 border-tertiary-container">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Verified Today</p>
+<p class="text-2xl font-black text-on-surface">324</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-b-4 border-error">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Rejected Today</p>
+<p class="text-2xl font-black text-error">12</p>
+</div>
+</div>
+</header>
+<!-- Filters -->
+<section class="px-8 py-4 flex flex-wrap items-center gap-4">
+<div class="relative flex-1 min-w-[300px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search by name, email, or ID..." type="text"/>
+</div>
+<select class="bg-surface-container-low border-none rounded-full text-xs font-bold uppercase tracking-widest py-2 px-6 focus:ring-2 focus:ring-primary">
+<option>All Status</option>
+<option>Pending</option>
+<option>Verified</option>
+<option>Rejected</option>
+</select>
+<div class="flex items-center bg-surface-container-low rounded-full px-4 py-2 gap-2 text-xs font-bold uppercase">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Oct 24, 2024</span>
+</div>
+</section>
+<!-- Main Table -->
+<section class="px-8 pb-12">
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant text-[10px] font-bold uppercase tracking-widest">
+<th class="px-6 py-4">User Identity</th>
+<th class="px-6 py-4">ID Document</th>
+<th class="px-6 py-4">Submitted</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Table Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="User" class="w-10 h-10 rounded-full object-cover" data-alt="close-up portrait of a serene woman with long dark hair and neutral background with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBONmOv5vZm8qFO8LES_sMR5uAUkL2t7hK6XbtUBlR1YHsqaLVzORMEsw_XLRyZnulTR526ple4r17RHiSqeIfmZYRRNvBxNZjT3uP2Lf-cg-Lq8UjBlkdnvRml4J1_3HpZZTsz4IP2HZahb-3pynFcxmA-1I1qDOMh2Q4hPFhdRkTl5zYILYMy2_qIkaAch7NTXPhiSMJ8vQxsHAJXjmicYLfXg7UMl4VyjiwDgoWtRV7wYntItv0bmtm2TiNUyqgEpYiZ5GEGOPA"/>
+<div>
+<p class="text-sm font-bold">Elara Vance</p>
+<p class="text-xs text-on-surface-variant">elara.vance@soulmail.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="relative w-20 h-12 rounded bg-slate-200 overflow-hidden cursor-zoom-in group-hover:ring-2 ring-primary transition-all">
+<img class="w-full h-full object-cover opacity-80" data-alt="macro close-up of a blurred government identification card with hologram details and watermarks visible" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh9k_2L_2xzn7n7zjwzGQGFa76kz6nOlKZ2D-7MJ0YxAyX0RMDBhqH-mgaXM6b0dP0miPGOXtCiw6IqmnG21Tw0dNbB64LWd68efmFI3EXWPNBNJf7vSdZH9ZHVE73TvqzYrND5Un2EKpJXWwDiEzMLapBJTC6Os0gFTu__QXu7FPmTL-1bYqwqkCwDLHoG4fLfZhgWSJfT8039zeAlYjB_T2LQZnpeHHXhlCIPtmiCfaBwSk0EeYFsEj06gwDLRkLjtBw28lost4"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-primary/20 transition-opacity">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs">Oct 24, 09:15 AM</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">2 hours ago</p>
+</td>
+<td class="px-6 py-5">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">Pending</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-error hover:bg-error-container rounded-full transition-colors" title="Reject">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors" title="Approve">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="User" class="w-10 h-10 rounded-full object-cover" data-alt="professional headshot of a smiling man with spectacles in a modern studio setting with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxALV2oi6ioiV8c1NpmNjLx3MiKNdmHZYJxuk9Zw5i9JI_BU6msmE0NGE2_eXWk-t9ZOtJKPXS-ApLbJH6BaPgmoQaOxtHFN4WRSTHMYBcux1IYAafscNiH8yJIUAl3bZYJc100dO7IL1I_6rwIJJEHnQHOktcdfQUlVc_NjE-0Df2pYJbtlpIUtLvQVRMWoDRmlpVPX3h33WH7GuiSlih3C7AZDvqEeVbr3Fsvj6Y6y8smduk1El08wiOKlNRM8WzUHy33MQ2qY4"/>
+<div>
+<p class="text-sm font-bold">Julian Thorne</p>
+<p class="text-xs text-on-surface-variant">j.thorne@horizon.net</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="relative w-20 h-12 rounded bg-slate-200 overflow-hidden cursor-zoom-in group-hover:ring-2 ring-primary transition-all">
+<img class="w-full h-full object-cover opacity-80" data-alt="blurred texture of a plastic identity card with microprinting and secure graphic elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAswmmJKNkyTAThX-QlcTcacAZWh2Y4jfFkCjHXNaFBQ2LjStbJwelkD2SbgymVECwu_N16vGa3fOfLeDBPnDti4NBoREwWBBhuV1Hpxl8WsF9aQ0pPj4nH-z1RhH3PS39epxz4grfdpobj-kna5jvMF504ROdribPtySJ9xfa9wOtvhJmzKKzBu3OhPo7aRdRlWggygMM4P-3SymCSeMQ6S5k-Rxn194Zkh02g1h6cA6BMU4ZXTSpbfDtY8HAI9Zlm7F_I6S6Clg"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-primary/20 transition-opacity">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs">Oct 24, 08:30 AM</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">3 hours ago</p>
+</td>
+<td class="px-6 py-5">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">Pending</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-error hover:bg-error-container rounded-full transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Table Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group opacity-60">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-sm font-bold">Amara Singh</p>
+<p class="text-xs text-on-surface-variant">asingh@global.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="w-20 h-12 rounded bg-surface-container-high"></div>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs">Oct 23, 11:45 PM</p>
+</td>
+<td class="px-6 py-5">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">Verified</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-xs font-bold text-on-surface-variant uppercase">Finalized</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Sidebar: Activity Log -->
+<aside class="w-80 bg-surface-container-low border-l border-slate-200 dark:border-slate-800 p-6 hidden xl:block">
+<h3 class="text-xs font-black uppercase tracking-[0.2em] text-primary mb-6">Recent Activity</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="relative shrink-0">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-surface rounded-full"></div>
+</div>
+<div>
+<p class="text-xs font-bold"><span class="text-primary">Marcus</span> approved Liam O'Neill</p>
+<p class="text-[10px] text-on-surface-variant mt-1">4 mins ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="relative shrink-0">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[16px]">error</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold"><span class="text-primary">Sarah</span> rejected Sarah Parker</p>
+<p class="text-[10px] text-on-surface-variant mt-1">"Low quality ID scan"</p>
+<p class="text-[10px] text-on-surface-variant mt-1">12 mins ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="relative shrink-0">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold">System flagged 3 high-risk profiles</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Requires authority review</p>
+<p class="text-[10px] text-on-surface-variant mt-1">1 hour ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="relative shrink-0">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold"><span class="text-primary">Marcus</span> approved Elena Rossi</p>
+<p class="text-[10px] text-on-surface-variant mt-1">2 hours ago</p>
+</div>
+</div>
+</div>
+<div class="mt-12 p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/15">
+<h4 class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-3">Verification Tips</h4>
+<p class="text-xs font-body italic leading-relaxed text-on-surface-variant">
+                "Ensure the photo matches the user's uploaded profile picture within a 90% confidence score. Look for holograms on government issued credentials."
+            </p>
+</div>
+</aside>
+<!-- Modal Preview (Floating Overlay UI) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-on-surface/60 backdrop-blur-sm pointer-events-none opacity-0 transition-opacity">
+<!-- In a real app, this would be triggered by JS. Representing the active state as hidden but ready -->
+<div class="bg-surface-container-lowest w-[90%] max-w-4xl rounded-2xl overflow-hidden shadow-2xl">
+<div class="flex justify-between items-center p-6 bg-surface-container-low border-b border-outline-variant/10">
+<div>
+<h2 class="font-bold">ID Document Review: Elara Vance</h2>
+<p class="text-xs text-on-surface-variant">Passport No: XXXXXX4921 • Expiry: 12/2028</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full bg-surface hover:bg-surface-container-high"><span class="material-symbols-outlined">zoom_in</span></button>
+<button class="p-2 rounded-full bg-surface hover:bg-surface-container-high"><span class="material-symbols-outlined">zoom_out</span></button>
+<button class="p-2 rounded-full bg-surface hover:bg-surface-container-high ml-4"><span class="material-symbols-outlined">close</span></button>
+</div>
+</div>
+<div class="p-8 flex justify-center bg-surface-dim">
+<img class="max-h-[614px] rounded shadow-lg object-contain" data-alt="detailed high-resolution close-up of a national passport page showing biometric data fields and secure watermarking patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN2VGfA9G9-q_YNpf5DVdfKO6751rqOGhzjNeu_EvoBExaDAZ6aWaJlx48O27IyHc-Pbozuv1RKpknOPbHT3geHdPiU5UHrr7GK7VWgadcEUNEzVT8BL-D3yV8DwYsHAzLcpjnISoxe9NW5CkInyz9StK-5UkD-yNFaDGGTTNKQKJU-Q-6cUB9Zd8f_2Iigju9qAU3_blxKxG0tXSi8PLATVzZiuQDRObjd11nLPv3hscY_I6gADQkTCrAUcwwuyKnV2SKautsSG8"/>
+</div>
+<div class="p-6 flex justify-end gap-4 bg-surface-container-low">
+<button class="px-8 py-3 rounded-full border border-error text-error text-xs font-bold uppercase tracking-widest hover:bg-error/5">Reject Profile</button>
+<button class="px-8 py-3 rounded-full bg-primary text-on-primary text-xs font-bold uppercase tracking-widest hover:opacity-90">Approve Profile</button>
+</div>
+</div>
+</div>
+</body></html>

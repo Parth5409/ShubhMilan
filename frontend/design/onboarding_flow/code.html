@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Onboarding | SoulSync AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#67529a",
+                    "secondary": "#a43b38",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#494550",
+                    "inverse-on-surface": "#f2f0f4",
+                    "outline-variant": "#cbc4d1",
+                    "surface": "#faf9fc",
+                    "on-primary-fixed-variant": "#4f3a80",
+                    "tertiary-container": "#cca730",
+                    "secondary-fixed-dim": "#ffb3ad",
+                    "on-tertiary-fixed": "#241a00",
+                    "primary-fixed": "#e9ddff",
+                    "on-secondary-fixed-variant": "#842323",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#efedf1",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f5f3f7",
+                    "on-secondary-fixed": "#410004",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#fc7d76",
+                    "on-surface": "#1b1b1e",
+                    "on-primary-container": "#bba3f2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e3e2e6",
+                    "on-secondary-container": "#711517",
+                    "on-primary-fixed": "#220852",
+                    "tertiary-fixed": "#ffe088",
+                    "on-tertiary-container": "#4f3e00",
+                    "primary": "#341e64",
+                    "inverse-surface": "#303033",
+                    "surface-container-high": "#e9e7eb",
+                    "background": "#faf9fc",
+                    "on-background": "#1b1b1e",
+                    "outline": "#7a7581",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "surface-container-highest": "#e3e2e6",
+                    "secondary-fixed": "#ffdad7",
+                    "tertiary": "#735c00",
+                    "inverse-primary": "#d0bcff",
+                    "surface-dim": "#dbd9dd",
+                    "primary-fixed-dim": "#d0bcff",
+                    "primary-container": "#4b367c",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#faf9fc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Noto Serif"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ai-gradient {
+            background: linear-gradient(135deg, #341e64 0%, #4b367c 100%);
+        }
+        .step-active {
+            width: 2rem;
+            background-color: #341e64;
+        }
+        .step-inactive {
+            width: 0.5rem;
+            background-color: #cbc4d1;
+        }
+        /* Custom range slider styling */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #341e64;
+            cursor: pointer;
+            margin-top: -8px;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #cbc4d1;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Placeholder (Simplified for Onboarding) -->
+<nav class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 py-4 px-8 flex justify-between items-center max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black tracking-tight text-indigo-950 font-headline">SoulSync AI</div>
+<div class="text-on-surface-variant font-label text-sm uppercase tracking-widest">Onboarding Journey</div>
+</nav>
+<main class="max-w-4xl mx-auto px-6 pt-12 pb-32">
+<!-- Header & Progress -->
+<header class="mb-12">
+<div class="flex items-center gap-2 mb-6">
+<div class="step-active h-1 rounded-full transition-all duration-500"></div>
+<div class="step-inactive h-1 rounded-full transition-all"></div>
+<div class="step-inactive h-1 rounded-full transition-all"></div>
+<div class="step-inactive h-1 rounded-full transition-all"></div>
+<div class="step-inactive h-1 rounded-full transition-all"></div>
+<div class="step-inactive h-1 rounded-full transition-all"></div>
+</div>
+<p class="font-label text-sm text-secondary uppercase tracking-widest mb-2">Step 4 of 6</p>
+<h1 class="font-headline text-4xl font-extrabold text-on-surface leading-tight">Your Digital Reflection</h1>
+</header>
+<!-- Current Step Canvas: Bio Creation (Editorial Pattern) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left: Form Controls -->
+<div class="lg:col-span-7 space-y-8">
+<section>
+<label class="block font-label text-sm font-semibold text-on-surface-variant mb-4">TELL YOUR STORY</label>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border-none rounded-xl p-6 font-body text-lg focus:bg-surface-container-lowest focus:ring-1 focus:ring-surface-tint transition-all placeholder:text-outline/50" placeholder="Describe your values, your journey, and what makes your soul unique..." rows="8"></textarea>
+<!-- AI Enhance Button -->
+<button class="absolute bottom-4 right-4 ai-gradient text-white flex items-center gap-2 px-4 py-2 rounded-full font-label text-sm font-bold shadow-lg hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span>
+<span>✨ Enhance with AI</span>
+</button>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant italic">Our AI helps refine your thoughts into a compelling narrative while maintaining your authentic voice.</p>
+</section>
+<!-- Hidden Step 1: Basic Info (Conceptual Preview for Visual Logic) -->
+<!-- <div class="grid grid-cols-2 gap-6">
+                    <div class="col-span-2">
+                        <label class="block font-label text-xs uppercase tracking-widest text-on-surface-variant mb-2">Full Name</label>
+                        <input type="text" class="w-full bg-surface-container-low border-none rounded-full px-6 py-4 focus:bg-surface-container-lowest">
+                    </div>
+                </div> -->
+</div>
+<!-- Right: Contextual Inspiration Sidebar -->
+<div class="lg:col-span-5">
+<div class="bg-surface-container p-8 rounded-xl space-y-6">
+<h3 class="font-headline font-bold text-xl">The AI Difference</h3>
+<p class="text-sm leading-relaxed opacity-80">SoulSync AI uses deep semantic analysis to match you based on values, not just interests. Your bio is the heart of your profile.</p>
+<div class="p-4 bg-surface-container-lowest rounded-lg border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm">tips_and_updates</span>
+</div>
+<span class="font-headline font-bold text-sm">Writing Tip</span>
+</div>
+<p class="text-xs italic leading-normal">"Focus on the 'why' behind your life choices. Instead of 'I like traveling', try 'I find growth in exploring new cultures and perspectives.'"</p>
+</div>
+<div class="relative rounded-xl overflow-hidden aspect-[4/3] group">
+<img class="w-full h-full object-cover" data-alt="A serene landscape with two silhouetted figures watching a sunset over a calm ocean, soft warm lighting, editorial photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbVqOK-3ZJsPneHUkRL3h_WYRTYQ-yyTOxUNCVKb59lgGA2nYvwmlnRMPuNIMiWjW5Ixs9B9b0Y0-GfXeXTMfwD8rTKn69LKbq1FmGv5xBu_OjWAuilFe6YEemeHkLR8nFc59qosykzJ5en4qe8rSHAe6DIo596JhV3787ReIAN9iQ2Jmq4WfyuVgKLX3CUVhg0qAALdrvq7D0QedNMNBCujtALzbIemaImrikc5_BP4aL1MNLVFXOXZnDE16fN3Rqc7ujneS5RZA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+<p class="text-white text-xs font-label uppercase tracking-widest">Cultivating Authenticity</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Astrology Result (Step 3 Preview) -->
+<div class="mt-16 bg-surface-container-low p-8 rounded-xl border border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<div>
+<h3 class="font-headline font-bold text-2xl mb-2">Your Celestial Alignment</h3>
+<p class="text-on-surface-variant max-w-md">Generated from your birth details on Step 3. These insights help our AI gauge temperament compatibility.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-xl text-center min-w-[120px] shadow-sm">
+<span class="material-symbols-outlined text-4xl text-tertiary mb-2">sunny</span>
+<div class="font-headline font-bold">Leo</div>
+<div class="text-[10px] uppercase tracking-tighter opacity-60">Sun Sign</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl text-center min-w-[120px] shadow-sm">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">dark_mode</span>
+<div class="font-headline font-bold">Pisces</div>
+<div class="text-[10px] uppercase tracking-tighter opacity-60">Moon Sign</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Photo Upload Area (Step 5 Preview) -->
+<div class="mt-16 text-center">
+<h3 class="font-headline font-bold text-2xl mb-6">Visual Presence</h3>
+<div class="border-2 border-dashed border-outline-variant bg-surface-container-lowest rounded-3xl p-12 hover:bg-surface transition-colors cursor-pointer group">
+<div class="max-w-xs mx-auto">
+<span class="material-symbols-outlined text-5xl text-outline mb-4 group-hover:scale-110 transition-transform">add_a_photo</span>
+<p class="font-headline font-semibold text-lg mb-2">Upload your portrait</p>
+<p class="text-sm text-on-surface-variant">Drag and drop or click to browse. Solo portraits with natural lighting work best.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Navigation Shell -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-lowest/90 backdrop-blur-md z-40">
+<div class="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-label font-bold uppercase text-xs tracking-widest">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+                Back
+            </button>
+<div class="hidden md:flex gap-4 items-center">
+<span class="text-xs font-label text-outline uppercase tracking-widest">Your progress is saved automatically</span>
+<div class="h-1 w-16 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+<button class="ai-gradient px-12 py-4 rounded-full text-on-primary font-headline font-extrabold tracking-tight hover:shadow-xl transition-all active:scale-95">
+                Next Step
+            </button>
+</div>
+</div>
+<!-- Final Step Preview Modal (Mockup for design logic) -->
+<div class="hidden fixed inset-0 bg-on-surface/20 backdrop-blur-sm z-[60] flex items-center justify-center p-6">
+<div class="bg-surface-container-lowest max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl">
+<div class="p-8 bg-primary text-on-primary">
+<h2 class="font-headline text-3xl font-bold">Review Your Sanctuary</h2>
+<p class="opacity-80">Ensure your essence is captured accurately before entering the collective.</p>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex items-start gap-6">
+<div class="w-24 h-32 rounded-xl bg-surface-container-high shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a confident smiling person with soft background blur, high-end editorial fashion photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2RYRQC1e78gyPHEzMDz4WUnUmYb-SGlYZNU_gV6rgjlOSvSMM-S1oJ5_eJqeJ7Y47FUyfvov5-tYDhR4w2ab19Q1zgGwzGRYQSMaB3Yi5otk0hitomG3SE90pJV1TsLtZzAwpkjIxgxUcNAPxI7dkcym8c_uMmHpM69_5KmnD9rKTudBpKdMT1Oog54evtGO-_DbIHCO4Bqw4kiNW1e6ReO6i3ddKtiM0gI4xZwrsIzRC2nit9-wTUm-aD-Ma93joeiiJcM0zL18"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline font-bold text-xl">Arjun Mehta, 29</h3>
+<p class="text-sm text-secondary font-bold">Mumbai • Product Designer • Leo</p>
+<p class="mt-3 text-sm text-on-surface-variant line-clamp-3">"I believe in the intersection of technology and human emotion. Seeking a partner who values deep conversation over small talk and late-night museum visits..."</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-xl">
+<p class="text-[10px] uppercase tracking-widest opacity-60 mb-1">Education</p>
+<p class="font-headline font-bold text-sm">M.Des, IIT Bombay</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<p class="text-[10px] uppercase tracking-widest opacity-60 mb-1">Annual Income</p>
+<p class="font-headline font-bold text-sm">₹24L - ₹30L</p>
+</div>
+</div>
+<button class="w-full bg-tertiary-container py-4 rounded-full text-on-tertiary-container font-headline font-black uppercase tracking-widest shadow-lg hover:shadow-xl transition-all">
+                    Finalize Connection
+                </button>
+</div>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="fixed top-0 right-0 -z-10 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"></div>
+<div class="fixed bottom-0 left-0 -z-10 w-1/4 h-1/2 bg-gradient-to-tr from-secondary/5 to-transparent pointer-events-none"></div>
+</body></html>

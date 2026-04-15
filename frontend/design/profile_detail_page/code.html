@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SoulSync AI - Profile Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#67529a",
+                        "secondary": "#a43b38",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#494550",
+                        "inverse-on-surface": "#f2f0f4",
+                        "outline-variant": "#cbc4d1",
+                        "surface": "#faf9fc",
+                        "on-primary-fixed-variant": "#4f3a80",
+                        "tertiary-container": "#cca730",
+                        "secondary-fixed-dim": "#ffb3ad",
+                        "on-tertiary-fixed": "#241a00",
+                        "primary-fixed": "#e9ddff",
+                        "on-secondary-fixed-variant": "#842323",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#efedf1",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f5f3f7",
+                        "on-secondary-fixed": "#410004",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fc7d76",
+                        "on-surface": "#1b1b1e",
+                        "on-primary-container": "#bba3f2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e3e2e6",
+                        "on-secondary-container": "#711517",
+                        "on-primary-fixed": "#220852",
+                        "tertiary-fixed": "#ffe088",
+                        "on-tertiary-container": "#4f3e00",
+                        "primary": "#341e64",
+                        "inverse-surface": "#303033",
+                        "surface-container-high": "#e9e7eb",
+                        "background": "#faf9fc",
+                        "on-background": "#1b1b1e",
+                        "outline": "#7a7581",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "surface-container-highest": "#e3e2e6",
+                        "secondary-fixed": "#ffdad7",
+                        "tertiary": "#735c00",
+                        "inverse-primary": "#d0bcff",
+                        "surface-dim": "#dbd9dd",
+                        "primary-fixed-dim": "#d0bcff",
+                        "primary-container": "#4b367c",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#faf9fc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Noto Serif"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .serif-text { font-family: 'Noto Serif', serif; }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            background-color: rgba(250, 249, 252, 0.8);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #341e64 0%, #4b367c 100%);
+        }
+        .constellation-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(103, 82, 154, 0.1) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-label selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-surface/80 dark:bg-slate-950/80 backdrop-blur-md docked full-width top-0 sticky z-50 no-border tonal-shift-bg">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black tracking-tight text-indigo-950 dark:text-indigo-100 font-headline">SoulSync AI</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-indigo-950 dark:text-white border-b-2 border-indigo-900 dark:border-indigo-400 pb-1 Headlines: Manrope bold text-sm font-semibold" href="#">Discover</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors Labels: text-sm font-semibold" href="#">Matches</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors Labels: text-sm font-semibold" href="#">Messages</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors Labels: text-sm font-semibold" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold text-sm hover:opacity-80 transition-all">Upgrade</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/20">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a young professional woman with a warm smile and soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBDVg8Kc-gM28ynD6XXm-gq4ewjbHj-fFpYf1GujO_dzS8BoAljc0BCGO9vEqL3MJu7gdLb7nc2nnQKqn9N3M0PXV80FIwd41Yqp93r_W5E4G1XgMM1fHdyDYn-8QN8je2M9nUiVt7tBjZptrBGTL4E78OTEF3ZFXWcy5LfWtYtmQIX1QkyDRtJmLMN01uEaauMcFuhJOEDIteHt04MY2H5QMKcD9fOUsLbkOYy7EZxdp2QQTSO0iVztBehNOrwwz7QtYwRc0RgEc"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="max-w-screen-2xl mx-auto px-8 py-12">
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- LEFT SECTION: Profile Details (70%) -->
+<section class="lg:w-[70%] space-y-16">
+<!-- Hero Section -->
+<div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden bg-surface-container shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="portrait of a sophisticated young woman standing in a lush garden at dusk with soft golden light catching her hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVUTtfuyubgdxQrrUkOtvdn05KtKwvWImE0IjbfDUw_Ql8Y-cNmy0qYHJakKrUE0doqZUpPf3lz9vlhZ1fexKqeYCreCH2zukElf8Snrzx5TeSwX3gKROBWcvKajD5hQxC81qn7e95beWQISYc4bmPU9DcePNz-o6stAeANCYrJHVQ3k3dPp5QgJ2H_PCG8r8UhnmxEUIwbDagbVron1_7DamBEHrb-sRpbkzulyKy3iEbje1nfUUFMbk2ZrKMfeAxwjzjErlsATM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-10 text-white">
+<div class="flex items-center gap-3 mb-2">
+<h1 class="text-5xl font-black font-headline tracking-tighter">Elowen, 28</h1>
+<span class="bg-surface-container-lowest text-primary p-1 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</span>
+</div>
+<p class="text-lg opacity-90 font-medium">Design Architect • San Francisco, CA</p>
+</div>
+</div>
+<!-- About Section -->
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="text-3xl font-bold font-headline text-on-surface">The Narrative</h2>
+<span class="inline-flex items-center gap-2 bg-primary/5 text-primary-container px-4 py-1.5 rounded-full text-sm font-bold border border-primary/10">
+                            ✨ AI Enhanced
+                        </span>
+</div>
+<p class="serif-text text-xl leading-relaxed text-on-surface-variant max-w-3xl">
+                        A collector of moments, rare books, and mid-century aesthetics. I find beauty in the intersection of structural logic and organic chaos. As an architect, I spend my days designing spaces for others, but I'm currently looking for someone to build a shared sanctuary with. My ideal Sunday involves a coastal drive, a deep conversation about philosophy, and the perfect sourdough crust.
+                    </p>
+</div>
+<!-- Basic Info Grid -->
+<div class="bg-surface-container-low p-10 rounded-xl">
+<h3 class="text-xl font-bold font-headline mb-8 text-on-surface-variant tracking-wide uppercase text-xs">Vital Statistics</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8">
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary opacity-70">height</span>
+<span class="text-xs font-bold uppercase tracking-widest text-outline">Height</span>
+<p class="font-bold text-on-surface">5'8" (173 cm)</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary opacity-70">temple_hindu</span>
+<span class="text-xs font-bold uppercase tracking-widest text-outline">Spirituality</span>
+<p class="font-bold text-on-surface">Pluralistic / Spiritual</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary opacity-70">school</span>
+<span class="text-xs font-bold uppercase tracking-widest text-outline">Education</span>
+<p class="font-bold text-on-surface">M.Arch, Stanford</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary opacity-70">language</span>
+<span class="text-xs font-bold uppercase tracking-widest text-outline">Languages</span>
+<p class="font-bold text-on-surface">English, French, Italian</p>
+</div>
+</div>
+</div>
+<!-- Astrology Section -->
+<div class="constellation-bg bg-primary/5 p-12 rounded-xl relative overflow-hidden">
+<div class="relative z-10 space-y-6">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 bg-surface-container-lowest px-4 py-2 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+<span class="font-bold">Leo Sun</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-lowest px-4 py-2 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+<span class="font-bold">Pisces Moon</span>
+</div>
+</div>
+<h3 class="text-3xl font-bold font-headline text-primary">Cosmic Alignment</h3>
+<p class="serif-text text-lg text-on-surface-variant max-w-2xl leading-loose">
+                            Your Leo sun brings a magnetic warmth and leadership to her life, while her Pisces moon adds a layer of intuitive depth that complements your rational nature. This combination suggests a dynamic where you provide the structure, and she provides the soul. The stars indicate a high potential for long-term creative synergy.
+                        </p>
+</div>
+<span class="absolute -right-8 -bottom-8 material-symbols-outlined text-[180px] text-primary/5 opacity-40 select-none">stars</span>
+</div>
+<!-- Preferences -->
+<div class="space-y-8">
+<h3 class="text-2xl font-bold font-headline">Intentional Connection</h3>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="flex items-start gap-4 p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-secondary mt-1">favorite</span>
+<div>
+<p class="font-bold text-on-surface">Looking For</p>
+<p class="text-on-surface-variant serif-text">A long-term partnership built on mutual intellectual curiosity and shared life goals.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-secondary mt-1">distance</span>
+<div>
+<p class="font-bold text-on-surface">Location Preference</p>
+<p class="text-on-surface-variant serif-text">Willing to relocate for the right connection within North America or Europe.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT SECTION: Sticky Actions/Compatibility (30%) -->
+<aside class="lg:w-[30%]">
+<div class="sticky top-28 space-y-8">
+<!-- Primary Actions -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm space-y-4">
+<button class="w-full primary-gradient text-on-primary py-5 rounded-full font-bold text-lg flex items-center justify-center gap-3 transition-transform active:scale-95 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">send</span>
+                            Send Interest
+                        </button>
+<button class="w-full bg-surface-container-low text-primary py-5 rounded-full font-bold text-lg flex items-center justify-center gap-3 border border-outline-variant/15 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+                            Save Profile
+                        </button>
+</div>
+<!-- Compatibility Score -->
+<div class="bg-surface-container-low p-8 rounded-xl space-y-8">
+<div class="text-center space-y-4">
+<div class="relative w-40 h-40 mx-auto flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-outline-variant/20" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="10"></circle>
+<circle class="text-primary" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="66" stroke-linecap="round" stroke-width="10"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-black font-headline text-primary">85%</span>
+<span class="text-[10px] uppercase tracking-widest font-bold text-outline">Soul Match</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="font-bold text-on-surface-variant">Personality</span>
+<span class="text-primary font-black">92%</span>
+</div>
+<div class="w-full bg-outline-variant/20 h-1.5 rounded-full">
+<div class="bg-primary h-full rounded-full" style="width: 92%"></div>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="font-bold text-on-surface-variant">Lifestyle</span>
+<span class="text-primary font-black">78%</span>
+</div>
+<div class="w-full bg-outline-variant/20 h-1.5 rounded-full">
+<div class="bg-primary h-full rounded-full" style="width: 78%"></div>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="font-bold text-on-surface-variant">Core Values</span>
+<span class="text-primary font-black">88%</span>
+</div>
+<div class="w-full bg-outline-variant/20 h-1.5 rounded-full">
+<div class="bg-primary h-full rounded-full" style="width: 88%"></div>
+</div>
+</div>
+</div>
+<!-- AI Icebreaker -->
+<div class="space-y-4">
+<button class="w-full flex items-center justify-between p-4 bg-tertiary-container/10 text-on-tertiary-container rounded-xl border border-tertiary-container/20 group hover:bg-tertiary-container/20 transition-all">
+<span class="font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                                ✨ Generate Icebreakers
+                            </span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">chevron_right</span>
+</button>
+<div class="space-y-3">
+<div class="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 text-sm italic serif-text text-on-surface-variant">
+                                "Your master's from Stanford is impressive. If you could redesign any public space in SF, which would it be and why?"
+                            </div>
+<div class="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 text-sm italic serif-text text-on-surface-variant">
+                                "I noticed you love rare books. What's the most precious find currently in your collection?"
+                            </div>
+</div>
+</div>
+<!-- Mutual Connections -->
+<div class="pt-4 space-y-4">
+<p class="text-xs font-bold uppercase tracking-widest text-outline">Mutual Connections</p>
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a young man with a friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY6NdIVuEfPy5WD18se0jNAQfndkRfBjXfquOBDbgdERe7uCMSjYjy2EFThLZP9TdA24uDJWjioufI7SwwsuZt_5zVDmEZQis8tB9YxnaNBOhYIqlu7lKkNNWKMlFNVr1kR3xhebwkKfMiK4DEqtcwENNGzUL2Ct8WP5Tq-15FfueBjcJSb3b2APmEMhXs8bdnNMzgvUtYw58cGwQNI3dNAnlFrnnXf-DpWF_Qu9mztwzVjZo0Xo-LYwfyCo40WgrFzDyT1DIKxBQ"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a man in his 30s" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcnKYuRGfPvZEBsa8dyd1GEncxOkXAzLmSBUxGcbzEYE4KMv5_EqOJS4rkSq6ZH9ypZQPiURRsgjp6ijm7pjOMob3f7ZfErMATB7moZqGLNA7vBj-PnlJ_38gJg3eD42WnoFkN_RTKSEmR1PqY_pGnEfXOw7P7ImGCG3tJ179VVC1cBBUIzblMv2GYF1o_XNbsXMs4UQZmoQGtv6u5lgrrk03_RDLwg913QAHdM3IL3nnvT6G9hxKFXwCTporEem56_hjeepsimaE"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a woman with a confident smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAV63M4cfjrH7fcVJm_4Yt_D2sCCKY20jxhMsfohdfKTk_K0Q8iZ72iypUYsxl3nKI2VhKVmrEeSuB5V2B6qhOmztQOOFcgk01K4xX3xiZS8iMX-ILATnzR1jy_rzdJHeHZ0x5OVmvAJMuHzMFcxp6lsmfurUkLI8ixpMDRdc_ObiFkdbxGDW8lmrCtKgEwo31SB3yCAmJ-xAQgKmQBP2YLx-YwrHqEpisL9dd8LSjgtc2OSuBVyBD491_yiHWP8ykXZmZm9SwICs"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">
+                                +12
+                            </div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-slate-100 dark:border-slate-900 bg-slate-50 dark:bg-slate-950 mt-20 full-width tonal-shift-bg">
+<div class="space-y-4">
+<div class="text-xl font-bold text-indigo-950 dark:text-indigo-100 font-headline">SoulSync AI</div>
+<p class="Body: Noto Serif text-sm text-slate-500 leading-relaxed">© 2024 SoulSync AI. A Digital Sanctuary for Life's Greatest Decision.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="Labels: Manrope text-xs tracking-widest uppercase font-bold text-indigo-900 dark:text-indigo-300">Sanctuary Links</h4>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 transition-opacity hover:opacity-70 text-sm" href="#">Philosophy</a>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 transition-opacity hover:opacity-70 text-sm" href="#">Privacy Sanctuary</a>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 transition-opacity hover:opacity-70 text-sm" href="#">Terms of Connection</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="Labels: Manrope text-xs tracking-widest uppercase font-bold text-indigo-900 dark:text-indigo-300">Support</h4>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 transition-opacity hover:opacity-70 text-sm" href="#">Concierge Services</a>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 transition-opacity hover:opacity-70 text-sm" href="#">Verification Process</a>
+<a class="text-slate-500 hover:text-indigo-700 dark:text-slate-400 transition-opacity hover:opacity-70 text-sm" href="#">Community Guidelines</a>
+</div>
+</footer>
+</body></html>
