@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
 from core.db import get_mongodb
 from models.user import UserCreate, UserOut
-from models.auth import Token
+from models.auth import Token, LoginRequest
 from services.mongo_service import MongoService
 from utils.auth import get_password_hash, verify_password, create_access_token
 from utils.deps import get_current_user
@@ -18,17 +17,17 @@ async def register(user_in: UserCreate, db = Depends(get_mongodb)):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="User with this email already exists"
         )
-    
+
     user_dict = user_in.model_dump()
     user_dict["password_hash"] = get_password_hash(user_dict.pop("password"))
     return await mongo_service.create_user(user_dict)
 
 @router.post("/login", response_model=Token)
-async def login(form_data: OAuth2PasswordRequestForm = Depends(), db = Depends(get_mongodb)):
+async def login(login_data: LoginRequest, db = Depends(get_mongodb)):
     mongo_service = MongoService(db)
-    user_doc = await mongo_service.get_user_with_password(form_data.username)
+    user_doc = await mongo_service.get_user_with_password(login_data.email)
     
-    if not user_doc or not verify_password(form_data.password, user_doc["password_hash"]):
+    if not user_doc or not verify_password(login_data.password, user_doc["password_hash"]):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",

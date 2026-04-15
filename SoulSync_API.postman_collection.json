@@ -97,14 +97,47 @@
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
+                "value": "application/json"
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"securepassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Login with email/password. Returns access_token. The test script auto-saves it to the `token` variable."
+          },
+          "response": []
+        },
+        {
+          "name": "Login (Form Data)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.access_token) {",
+                  "    pm.collectionVariables.set('token', json.access_token);",
+                  "    console.log('Token saved:', json.access_token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
                 {
-                  "key": "username",
+                  "key": "email",
                   "value": "alice@example.com",
                   "type": "text"
                 },
@@ -120,7 +153,7 @@
               "host": ["{{base_url}}"],
               "path": ["auth", "login"]
             },
-            "description": "Login with email/password (OAuth2 form). Returns access_token. The test script auto-saves it to the `token` variable."
+            "description": "Login with email/password using form data. Returns access_token. The test script auto-saves it to the `token` variable."
           },
           "response": []
         },
@@ -248,6 +281,30 @@
           "response": []
         },
         {
+          "name": "Enhance Bio (Form Data)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "raw_text",
+                  "value": "I like movies and food. I am a chill person looking for someone nice.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/ai/enhance-bio",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "enhance-bio"]
+            },
+            "description": "Uses Gemini AI to rewrite a raw bio into an engaging, polished version using form data. No auth required."
+          },
+          "response": []
+        },
+        {
           "name": "Get Icebreakers",
           "request": {
             "method": "POST",
@@ -271,6 +328,35 @@
               "path": ["ai", "icebreakers"]
             },
             "description": "Generate AI-powered icebreaker messages based on the bios of the current user and the target user. Both users must have a completed ai_profile.bio."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Icebreakers (Form Data)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "target_id",
+                  "value": "<TARGET_USER_OBJECTID>",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/ai/icebreakers",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "icebreakers"]
+            },
+            "description": "Generate AI-powered icebreaker messages using form data based on the bios of the current user and the target user. Both users must have a completed ai_profile.bio."
           },
           "response": []
         },
@@ -300,6 +386,45 @@
             "description": "Generates an AI astrology/kundli profile and saves it to the user's document under the `astrology` field."
           },
           "response": []
+        },
+        {
+          "name": "Generate Astrology Profile (Form Data)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "dob",
+                  "value": "1998-03-15",
+                  "type": "text"
+                },
+                {
+                  "key": "time",
+                  "value": "08:30",
+                  "type": "text"
+                },
+                {
+                  "key": "place",
+                  "value": "Delhi, India",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/ai/generate-astrology",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "generate-astrology"]
+            },
+            "description": "Generates an AI astrology/kundli profile using form data and saves it to the user's document under the `astrology` field."
+          },
+          "response": []
         }
       ]
     },
@@ -309,26 +434,27 @@
         {
           "name": "Get Matches (Vector Search)",
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
               }
             ],
-            "url": {
-              "raw": "{{base_url}}/matches?q=looking for an adventurous partner who loves travel",
-              "host": ["{{base_url}}"],
-              "path": ["matches"],
-              "query": [
-                {
-                  "key": "q",
-                  "value": "looking for an adventurous partner who loves travel",
-                  "description": "Natural language search query used for vector similarity matching"
-                }
-              ]
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"q\": \"looking for an adventurous partner who loves travel\"\n}"
             },
-            "description": "Performs a ChromaDB vector similarity search using the query string. Automatically filters for opposite gender based on the current user's profile. Returns a list of matching UserOut objects."
+            "url": {
+              "raw": "{{base_url}}/matches",
+              "host": ["{{base_url}}"],
+              "path": ["matches"]
+            },
+            "description": "Performs a ChromaDB vector similarity search using `q` from the JSON request body. Automatically filters for opposite gender based on the current user's profile. Returns a list of matching UserOut objects."
           },
           "response": []
         }
@@ -361,6 +487,35 @@
               "path": ["interests"]
             },
             "description": "Send an interest/connection request to another user."
+          },
+          "response": []
+        },
+        {
+          "name": "Send Interest (Form Data)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "receiver_id",
+                  "value": "<TARGET_USER_OBJECTID>",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/interests",
+              "host": ["{{base_url}}"],
+              "path": ["interests"]
+            },
+            "description": "Send an interest/connection request to another user using form data."
           },
           "response": []
         },

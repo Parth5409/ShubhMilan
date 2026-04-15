@@ -10,7 +10,7 @@ router = APIRouter(prefix="/interests", tags=["interests"])
 
 @router.post("", response_model=InterestOut)
 async def send_interest(
-    interest_in: InterestCreate, 
+    interest_in: InterestCreate,
     current_user: UserOut = Depends(get_current_user),
     db = Depends(get_mongodb)
 ):

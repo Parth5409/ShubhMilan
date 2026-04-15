@@ -2,10 +2,12 @@ fastapi
 uvicorn[standard]
 motor
 python-jose[cryptography]
-passlib[bcrypt]
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
 langchain
 langchain-community
 langchain-google-genai
+langchain-ollama
 google-generativeai
 chromadb
 python-multipart

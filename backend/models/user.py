@@ -20,16 +20,16 @@ class PyObjectId(ObjectId):
         )
 
 class BasicInfo(BaseModel):
-    full_name: str
-    age: int
-    gender: str
-    city: str
-    state: str
-    religion: str
-    mother_tongue: str
-    education: str
-    occupation: str
-    annual_income_inr: int
+    full_name: Optional[str] = None
+    age: Optional[int] = None
+    gender: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    religion: Optional[str] = None
+    mother_tongue: Optional[str] = None
+    education: Optional[str] = None
+    occupation: Optional[str] = None
+    annual_income_inr: Optional[int] = None
 
 class Astrology(BaseModel):
     dob: str
@@ -43,6 +43,8 @@ class AIProfile(BaseModel):
     bio: Optional[str] = None
     raw_input: Optional[str] = None
     vector_id: Optional[str] = None
+    interests: Optional[List[str]] = None
+    relationship_goal: Optional[str] = None
 
 class Verification(BaseModel):
     status: str = "pending" # pending | verified | rejected
@@ -82,11 +84,51 @@ class UserOut(UserBase):
         json_encoders={ObjectId: str}
     )
 
+class BasicInfoUpdate(BaseModel):
+    full_name: Optional[str] = None
+    age: Optional[int] = None
+    gender: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    religion: Optional[str] = None
+    mother_tongue: Optional[str] = None
+    education: Optional[str] = None
+    occupation: Optional[str] = None
+    annual_income_inr: Optional[int] = None
+
+class AstrologyUpdate(BaseModel):
+    dob: Optional[str] = None
+    time_of_birth: Optional[str] = None
+    place_of_birth: Optional[str] = None
+    sun_sign: Optional[str] = None
+    moon_sign: Optional[str] = None
+    generated_reading: Optional[str] = None
+
+class AIProfileUpdate(BaseModel):
+    bio: Optional[str] = None
+    raw_input: Optional[str] = None
+    vector_id: Optional[str] = None
+    interests: Optional[List[str]] = None
+    relationship_goal: Optional[str] = None
+
+class VerificationUpdate(BaseModel):
+    status: Optional[str] = None
+    id_image_path: Optional[str] = None
+    submitted_at: Optional[datetime] = None
+    reviewed_at: Optional[datetime] = None
+    reviewed_by_admin_id: Optional[str] = None
+
+class PreferencesUpdate(BaseModel):
+    partner_age_min: Optional[int] = None
+    partner_age_max: Optional[int] = None
+    partner_city: Optional[List[str]] = None
+    partner_religion: Optional[str] = None
+
 class UserUpdate(BaseModel):
-    basic_info: Optional[BasicInfo] = None
-    astrology: Optional[Astrology] = None
-    ai_profile: Optional[AIProfile] = None
-    verification: Optional[Verification] = None
-    preferences: Optional[Preferences] = None
+    basic_info: Optional[BasicInfoUpdate] = None
+    astrology: Optional[AstrologyUpdate] = None
+    ai_profile: Optional[AIProfileUpdate] = None
+    verification: Optional[VerificationUpdate] = None
+    preferences: Optional[PreferencesUpdate] = None
     profile_photo_url: Optional[str] = None
     updated_at: datetime = Field(default_factory=datetime.utcnow)

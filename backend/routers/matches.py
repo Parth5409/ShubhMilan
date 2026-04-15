@@ -1,20 +1,28 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from core.db import get_mongodb, get_chromadb
 from models.user import UserOut
+from pydantic import BaseModel
 from services.mongo_service import MongoService
 from services.vector_service import VectorService
 from utils.deps import get_current_user
-from typing import List
+from typing import List, Optional
 
 router = APIRouter(prefix="/matches", tags=["matches"])
 
-@router.get("", response_model=List[UserOut])
+class MatchQuery(BaseModel):
+    q: Optional[str] = None
+    raw: Optional[str] = None
+
+@router.post("", response_model=List[UserOut])
 async def get_matches(
-    q: str, 
+    query: MatchQuery,
     current_user: UserOut = Depends(get_current_user),
     db = Depends(get_mongodb),
     chroma = Depends(get_chromadb)
 ):
+    q = query.q or query.raw
+    if not q:
+        raise HTTPException(status_code=400, detail="q is required")
     vector_service = VectorService(chroma)
     mongo_service = MongoService(db)
     

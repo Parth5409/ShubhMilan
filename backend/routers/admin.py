@@ -20,7 +20,7 @@ async def get_pending(
 @router.patch("/verify/{user_id}", response_model=UserOut)
 async def verify_user(
     user_id: str,
-    action: str = Query(..., regex="^(approve|reject)$"),
+    action: str = Query(..., pattern="^(approve|reject)$"),
     admin: UserOut = Depends(require_admin),
     db = Depends(get_mongodb)
 ):

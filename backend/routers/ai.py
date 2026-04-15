@@ -27,12 +27,14 @@ async def enhance_bio(req: EnhanceBioRequest):
 
 @router.post("/icebreakers")
 async def get_icebreakers(
-    req: IcebreakerRequest, 
+    req: IcebreakerRequest,
     current_user: UserOut = Depends(get_current_user),
     db = Depends(get_mongodb)
 ):
+    target = req.target_id
+    
     mongo_service = MongoService(db)
-    target_user = await mongo_service.get_user_by_id(req.target_id)
+    target_user = await mongo_service.get_user_by_id(target)
     if not target_user or not target_user.ai_profile or not target_user.ai_profile.bio:
         raise HTTPException(status_code=400, detail="Target user profile is incomplete")
     
@@ -52,16 +54,20 @@ async def generate_astrology(
     current_user: UserOut = Depends(get_current_user),
     db = Depends(get_mongodb)
 ):
+    astrology_dob = req.dob
+    astrology_time = req.time
+    astrology_place = req.place
+    
     ai_service = AIService()
-    astrology_data = await ai_service.generate_astrology(req.dob, req.time, req.place)
+    astrology_data = await ai_service.generate_astrology(astrology_dob, astrology_time, astrology_place)
     
     mongo_service = MongoService(db)
     # Save directly to user
     update_data = {
         "astrology": {
-            "dob": req.dob,
-            "time_of_birth": req.time,
-            "place_of_birth": req.place,
+            "dob": astrology_dob,
+            "time_of_birth": astrology_time,
+            "place_of_birth": astrology_place,
             **astrology_data
         }
     }
