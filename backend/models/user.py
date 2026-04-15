@@ -30,6 +30,7 @@ class BasicInfo(BaseModel):
     education: Optional[str] = None
     occupation: Optional[str] = None
     annual_income_inr: Optional[int] = None
+    mobile_number: Optional[str] = None
 
 class Astrology(BaseModel):
     dob: str
@@ -95,6 +96,7 @@ class BasicInfoUpdate(BaseModel):
     education: Optional[str] = None
     occupation: Optional[str] = None
     annual_income_inr: Optional[int] = None
+    mobile_number: Optional[str] = None
 
 class AstrologyUpdate(BaseModel):
     dob: Optional[str] = None

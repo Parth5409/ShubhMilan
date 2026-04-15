@@ -45,7 +45,8 @@ async def seed_db():
                 "age": 26,
                 "gender": "Female",
                 "city": "Mumbai",
-                "occupation": "Creative Director"
+                "occupation": "Creative Director",
+                "mobile_number": "+91 98765 43210"
             },
             "ai_profile": {
                 "bio": "Art enthusiast and coffee lover. Seeking someone who enjoys sunset walks and meaningful conversations.",
@@ -66,7 +67,8 @@ async def seed_db():
                 "age": 29,
                 "gender": "Male",
                 "city": "Delhi",
-                "occupation": "Software Architect"
+                "occupation": "Software Architect",
+                "mobile_number": "+91 87654 32109"
             },
             "ai_profile": {
                 "bio": "Techie by day, musician by night. I love exploring new technologies and playing the guitar.",
@@ -87,7 +89,8 @@ async def seed_db():
                 "age": 27,
                 "gender": "Female",
                 "city": "Bangalore",
-                "occupation": "Data Scientist"
+                "occupation": "Data Scientist",
+                "mobile_number": "+91 76543 21098"
             },
             "ai_profile": {
                 "bio": "I find beauty in patterns and data. Looking for an intellectually curious partner.",
@@ -108,7 +111,8 @@ async def seed_db():
                 "age": 31,
                 "gender": "Male",
                 "city": "Pune",
-                "occupation": "Medical Professional"
+                "occupation": "Medical Professional",
+                "mobile_number": "+91 65432 10987"
             },
             "ai_profile": {
                 "bio": "Passionate about healthcare and fitness. I enjoy running and cooking healthy meals.",
@@ -129,7 +133,8 @@ async def seed_db():
                 "age": 25,
                 "gender": "Female",
                 "city": "Hyderabad",
-                "occupation": "Content Creator"
+                "occupation": "Content Creator",
+                "mobile_number": "+91 54321 09876"
             },
             "ai_profile": {
                 "bio": "A storyteller at heart. I love capturing moments through my lens and sharing them with the world.",

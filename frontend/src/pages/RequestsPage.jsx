@@ -121,9 +121,22 @@ export const RequestsPage = () => {
                   ) : item.status === 'pending' ? (
                     <span className="text-sm italic text-slate-400">Waiting for response...</span>
                   ) : (
-                    <div className="flex items-center gap-2">
-                       <span className={`h-2 w-2 rounded-full ${item.status === 'accepted' ? 'bg-emerald-500' : 'bg-rose-500'}`}></span>
-                       <span className="text-sm font-semibold text-slate-600 capitalize">Interest {item.status}</span>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-2">
+                         <span className={`h-2 w-2 rounded-full ${item.status === 'accepted' ? 'bg-emerald-500' : 'bg-rose-500'}`}></span>
+                         <span className="text-sm font-semibold text-slate-600 capitalize">Interest {item.status}</span>
+                      </div>
+                      {item.status === 'accepted' && (
+                        <div className="mt-2 rounded-2xl bg-emerald-50 p-4 ring-1 ring-emerald-100">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-emerald-700">Contact Information</p>
+                          <p className="mt-1 text-lg font-bold text-emerald-950">
+                            {activeTab === 'received' 
+                              ? item.sender?.basic_info?.mobile_number 
+                              : item.receiver?.basic_info?.mobile_number}
+                          </p>
+                          <p className="mt-1 text-xs text-emerald-600 font-medium">You can now start convo</p>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

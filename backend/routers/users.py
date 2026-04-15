@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, status
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, status, Form
 from core.db import get_mongodb, get_chromadb
 from core.config import settings
 from models.user import UserOut, UserUpdate
@@ -69,6 +69,33 @@ async def upload_id(
             "id_image_path": f"/static/uploads/{current_user.id}_id.jpg"
         }
     }
-    await mongo_service.update_user(str(current_user.id), verification_data)
-    
     return {"status": "ok", "path": verification_data["verification"]["id_image_path"]}
+
+@router.post("/upload-photo")
+async def upload_photo(
+    file: UploadFile = File(...),
+    current_user: UserOut = Depends(get_current_user),
+    db = Depends(get_mongodb)
+):
+    # Ensure directory exists
+    profiles_dir = f"{settings.STATIC_FILES_PATH}/uploads/profiles"
+    os.makedirs(profiles_dir, exist_ok=True)
+    
+    # Generate filename using user ID and original extension
+    ext = os.path.splitext(file.filename)[1]
+    # Default to .jpg if no extension
+    if not ext:
+        ext = ".jpg"
+    
+    filename = f"{current_user.id}_profile{ext}"
+    file_path = os.path.join(profiles_dir, filename)
+    
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
+    relative_path = f"/static/uploads/profiles/{filename}"
+    
+    mongo_service = MongoService(db)
+    await mongo_service.update_user(str(current_user.id), {"profile_photo_url": relative_path})
+    
+    return {"status": "ok", "url": relative_path}

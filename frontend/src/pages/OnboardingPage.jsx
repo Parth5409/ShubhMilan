@@ -3,13 +3,14 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useAuth } from '../hooks/useAuth'
-import { generateAstrology, enhanceBio, updateUserProfile } from '../api/api'
+import { generateAstrology, enhanceBio, updateUserProfile, uploadProfilePhoto } from '../api/api'
 import { StepIndicator } from '../components/forms/StepIndicator.jsx'
 
 const STORAGE_KEY = 'soulsync_onboarding_draft'
 
 const defaultDraft = {
-  basic_info: { full_name: '', age: '', gender: '', city: '' },
+  profile_photo_url: '',
+  basic_info: { full_name: '', age: '', gender: '', city: '', mobile_number: '' },
   professional_info: { education: '', occupation: '', company: '' },
   astrology: { dob: '', time: '', place: '', sun_sign: '', moon_sign: '', reading: '' },
   ai_profile: { raw_bio: '', bio: '' },
@@ -24,6 +25,8 @@ export const OnboardingPage = () => {
   const [astrologyLoading, setAstrologyLoading] = useState(false)
   const [aiLoading, setAiLoading] = useState(false)
   const [draft, setDraft] = useState(defaultDraft)
+  const [photoLoading, setPhotoLoading] = useState(false)
+  const [photoPreview, setPhotoPreview] = useState(null)
 
   const form = useForm({ defaultValues: draft })
   const { register, handleSubmit, watch, reset, formState: { errors } } = form
@@ -93,6 +96,31 @@ export const OnboardingPage = () => {
     }
   }
 
+  const handlePhotoUpload = async (event) => {
+    const file = event.target.files[0]
+    if (!file) return
+
+    // Preview
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      setPhotoPreview(reader.result)
+    }
+    reader.readAsDataURL(file)
+
+    setPhotoLoading(true)
+    try {
+      const { url } = await uploadProfilePhoto(file)
+      setDraft((prev) => ({ ...prev, profile_photo_url: url }))
+      reset({ ...values, profile_photo_url: url })
+      toast.success('Photo uploaded successfully!')
+    } catch (error) {
+      toast.error(error.message || 'Failed to upload photo')
+      setPhotoPreview(null)
+    } finally {
+      setPhotoLoading(false)
+    }
+  }
+
   const handleNextStep = async (data) => {
     if (currentStep === 3 && !data.astrology.sun_sign) {
       toast.error('Generate your astrology profile before moving forward.')
@@ -139,7 +167,30 @@ export const OnboardingPage = () => {
 
           <form onSubmit={handleSubmit(handleNextStep)} className="mt-8 space-y-6">
             {currentStep === 1 && (
-              <div className="grid gap-5 sm:grid-cols-2">
+              <div className="space-y-6">
+                <div className="flex flex-col items-center gap-4 border-b border-slate-100 pb-6">
+                  <div className="relative h-32 w-32 overflow-hidden rounded-full bg-slate-100 ring-2 ring-slate-200">
+                    {photoPreview || values.profile_photo_url ? (
+                      <img src={photoPreview || `http://localhost:8000${values.profile_photo_url}`} alt="Profile" className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-slate-400">
+                        <svg className="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
+                    {photoLoading && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-white/60">
+                        <div className="h-6 w-6 animate-spin rounded-full border-2 border-soul-dark border-t-transparent"></div>
+                      </div>
+                    )}
+                  </div>
+                  <label className="cursor-pointer rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-200">
+                    {values.profile_photo_url ? 'Change Photo' : 'Upload Photo'}
+                    <input type="file" className="hidden" accept="image/*" onChange={handlePhotoUpload} />
+                  </label>
+                </div>
+                <div className="grid gap-5 sm:grid-cols-2">
                 <label className="space-y-2 text-sm text-slate-700">
                   Full name
                   <input type="text" {...register('basic_info.full_name', { required: 'Name is required' })} className="w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-soul-dark focus:ring-2 focus:ring-soul-dark/10" />
@@ -160,13 +211,19 @@ export const OnboardingPage = () => {
                   </select>
                   {errors.basic_info?.gender && <span className="text-xs text-rose-600">{errors.basic_info.gender.message}</span>}
                 </label>
-                <label className="space-y-2 text-sm text-slate-700">
-                  City
-                  <input type="text" {...register('basic_info.city', { required: 'City is required' })} className="w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-soul-dark focus:ring-2 focus:ring-soul-dark/10" />
-                  {errors.basic_info?.city && <span className="text-xs text-rose-600">{errors.basic_info.city.message}</span>}
-                </label>
-              </div>
-            )}
+                  <label className="space-y-2 text-sm text-slate-700">
+                    City
+                    <input type="text" {...register('basic_info.city', { required: 'City is required' })} className="w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-soul-dark focus:ring-2 focus:ring-soul-dark/10" />
+                    {errors.basic_info?.city && <span className="text-xs text-rose-600">{errors.basic_info.city.message}</span>}
+                  </label>
+                  <label className="space-y-2 text-sm text-slate-700">
+                    Mobile Number
+                    <input type="tel" {...register('basic_info.mobile_number', { required: 'Mobile number is required' })} className="w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-soul-dark focus:ring-2 focus:ring-soul-dark/10" />
+                    {errors.basic_info?.mobile_number && <span className="text-xs text-rose-600">{errors.basic_info.mobile_number.message}</span>}
+                  </label>
+                </div>
+            </div>
+          )}
 
             {currentStep === 2 && (
               <div className="grid gap-5 sm:grid-cols-2">
@@ -280,10 +337,20 @@ export const OnboardingPage = () => {
                     <p className="text-sm text-slate-500">City</p>
                     <p className="mt-2 text-base font-semibold text-slate-900">{values.basic_info.city}</p>
                   </div>
+                  <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                    <p className="text-sm text-slate-500">Mobile Number</p>
+                    <p className="mt-2 text-base font-semibold text-slate-900">{values.basic_info.mobile_number}</p>
+                  </div>
                   <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:col-span-2">
                     <p className="text-sm text-slate-500">Bio</p>
                     <p className="mt-2 text-base leading-7 text-slate-700">{values.ai_profile.bio || values.ai_profile.raw_bio}</p>
                   </div>
+                  {values.profile_photo_url && (
+                    <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:col-span-2">
+                      <p className="text-sm text-slate-500">Profile Photo</p>
+                      <img src={`http://localhost:8000${values.profile_photo_url}`} alt="Preview" className="mt-2 h-32 w-32 rounded-2xl object-cover" />
+                    </div>
+                  )}
                 </div>
               </div>
             )}

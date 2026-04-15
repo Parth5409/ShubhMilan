@@ -89,6 +89,20 @@ export const uploadIdForVerification = async (userId, file) => {
   return response.data;
 };
 
+/**
+ * POST /users/upload-photo
+ */
+export const uploadProfilePhoto = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const response = await api.post(`/users/upload-photo`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data;
+};
+
 // ─── AI ──────────────────────────────────────────────────────────────────────
 
 /**
