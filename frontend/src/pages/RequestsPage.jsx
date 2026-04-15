@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { getReceivedInterests, getSentInterests, respondToInterest } from '../api/mock'
+import { getReceivedInterests, getSentInterests, respondToInterest } from '../api/api'
 import { Modal } from '../components/ui/Modal.jsx'
 
 export const RequestsPage = () => {
@@ -30,8 +30,9 @@ export const RequestsPage = () => {
   }, [])
 
   const updateRequestState = (id, status) => {
-    setReceivedList((items) => items.map((item) => (item.id === id ? { ...item, status } : item)))
-    setSentList((items) => items.map((item) => (item.id === id ? { ...item, status } : item)))
+    const matcher = (item) => (item._id === id || item.id === id ? { ...item, status } : item)
+    setReceivedList((items) => items.map(matcher))
+    setSentList((items) => items.map(matcher))
   }
 
   const handleRespond = async (interest, status) => {
@@ -43,12 +44,13 @@ export const RequestsPage = () => {
     if (!currentInterest) return
     setProcessing(true)
     const originalStatus = currentInterest.status
-    updateRequestState(currentInterest.id, actionType)
+    const interestId = currentInterest._id || currentInterest.id
+    updateRequestState(interestId, actionType)
     setCurrentInterest(null)
     setActionType(null)
 
     try {
-      await respondToInterest(currentInterest.id, actionType)
+      await respondToInterest(interestId, actionType)
       toast.success(`Request ${actionType}`)
       if (actionType === 'declined') {
         toast(
@@ -56,7 +58,7 @@ export const RequestsPage = () => {
             <span className="flex items-center justify-between gap-4">
               Request declined
               <button onClick={() => {
-                updateRequestState(currentInterest.id, originalStatus)
+                updateRequestState(interestId, originalStatus)
                 toast.dismiss(t.id)
               }} className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
                 Undo
@@ -67,7 +69,7 @@ export const RequestsPage = () => {
         )
       }
     } catch (error) {
-      updateRequestState(currentInterest.id, originalStatus)
+      updateRequestState(interestId, originalStatus)
       toast.error(error.message || 'Unable to update request')
     } finally {
       setProcessing(false)
@@ -92,28 +94,42 @@ export const RequestsPage = () => {
       </div>
 
       <div className="space-y-6">
-        {(loading ? Array.from({ length: 2 }) : activeTab === 'received' ? receivedList : sentList).map((item) => (
-          <div key={item.id} className="rounded-[2rem] bg-white p-6 shadow-card ring-1 ring-slate-200">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h2 className="text-xl font-semibold text-slate-950">{item.sender?.basic_info.full_name || item.receiver?.basic_info.full_name}</h2>
-                <p className="mt-1 text-sm text-slate-500">{item.sender?.basic_info.city || item.receiver?.basic_info.city} · {item.created_at && new Date(item.created_at).toLocaleDateString()}</p>
+        {loading
+          ? Array.from({ length: 2 }).map((_, i) => (
+              <div key={i} className="rounded-[2rem] bg-white p-6 shadow-card ring-1 ring-slate-200 animate-pulse">
+                <div className="h-6 w-48 rounded bg-slate-200" />
+                <div className="mt-2 h-4 w-32 rounded bg-slate-100" />
+                <div className="mt-4 h-4 w-full rounded bg-slate-100" />
               </div>
-              <span className="inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">{item.status}</span>
-            </div>
-            <p className="mt-4 text-sm leading-7 text-slate-600">"{item.message}"</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {activeTab === 'received' ? (
-                <>
-                  <button onClick={() => handleRespond(item, 'accepted')} className="rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-600">Accept Interest</button>
-                  <button onClick={() => handleRespond(item, 'declined')} className="rounded-full bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-200">Decline</button>
-                </>
-              ) : (
-                <span className="text-sm text-slate-500">Status updated</span>
-              )}
-            </div>
-          </div>
-        ))}
+            ))
+          : (activeTab === 'received' ? receivedList : sentList).map((item) => (
+              <div key={item._id ?? item.id} className="rounded-[2rem] bg-white p-6 shadow-card ring-1 ring-slate-200">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h2 className="text-xl font-semibold text-slate-950">{item.sender?.basic_info?.full_name || item.receiver?.basic_info?.full_name}</h2>
+                    <p className="mt-1 text-sm text-slate-500">{item.sender?.basic_info?.city || item.receiver?.basic_info?.city} · {item.created_at && new Date(item.created_at).toLocaleDateString()}</p>
+                  </div>
+                  <span className="inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">{item.status}</span>
+                </div>
+                <p className="mt-4 text-sm leading-7 text-slate-600">"{item.message}"</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {activeTab === 'received' && item.status === 'pending' ? (
+                    <>
+                      <button onClick={() => handleRespond(item, 'accepted')} className="rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-600">Accept Interest</button>
+                      <button onClick={() => handleRespond(item, 'declined')} className="rounded-full bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-200">Decline</button>
+                    </>
+                  ) : item.status === 'pending' ? (
+                    <span className="text-sm italic text-slate-400">Waiting for response...</span>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                       <span className={`h-2 w-2 rounded-full ${item.status === 'accepted' ? 'bg-emerald-500' : 'bg-rose-500'}`}></span>
+                       <span className="text-sm font-semibold text-slate-600 capitalize">Interest {item.status}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))
+        }
       </div>
 
       <Modal isOpen={Boolean(currentInterest)} onClose={() => setCurrentInterest(null)} title={actionType === 'accepted' ? 'Confirm Acceptance' : 'Confirm Decline'}>

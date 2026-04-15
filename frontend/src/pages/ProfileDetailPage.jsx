@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import { getUserById, getIcebreakers, sendInterest } from '../api/mock'
+import { getUserById, getIcebreakers, sendInterest } from '../api/api'
 import { useAuth } from '../hooks/useAuth'
 import { Modal } from '../components/ui/Modal.jsx'
 import { SkeletonCard } from '../components/ui/SkeletonCard.jsx'
@@ -80,24 +80,24 @@ export const ProfileDetailPage = () => {
         <section className="rounded-[2rem] bg-white p-8 shadow-card ring-1 ring-slate-200">
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm text-slate-500">{profile.basic_info.city}, {profile.basic_info.state}</p>
-              <h1 className="mt-2 text-4xl font-semibold text-slate-950">{profile.basic_info.full_name}, {profile.basic_info.age}</h1>
-              <p className="mt-2 text-sm text-slate-600">{profile.professional_info.occupation} · {profile.professional_info.education}</p>
+              <p className="text-sm text-slate-500">{profile.basic_info?.city || 'Unknown'}, {profile.basic_info?.state || 'Unknown'}</p>
+              <h1 className="mt-2 text-4xl font-semibold text-slate-950">{profile.basic_info?.full_name || 'Unknown'}, {profile.basic_info?.age || 'N/A'}</h1>
+              <p className="mt-2 text-sm text-slate-600">{profile.professional_info?.occupation || 'Unknown'} · {profile.professional_info?.education || 'Unknown'}</p>
             </div>
-            <CompatibilityBadge value={profile.compatibility} />
+            <CompatibilityBadge value={profile.compatibility || null} />
           </div>
 
-          <img src={profile.profile_photo} alt={profile.basic_info.full_name} className="w-full rounded-[2rem] object-cover" />
+          <img src={profile.profile_photo_url || 'https://via.placeholder.com/400'} alt={profile.basic_info?.full_name || 'User'} className="w-full rounded-[2rem] object-cover" />
 
           <div className="mt-8 space-y-6">
             <div>
               <h2 className="text-xl font-semibold text-slate-900">The Narrative</h2>
-              <p className="mt-3 leading-7 text-slate-600">{profile.ai_profile.bio}</p>
+              <p className="mt-3 leading-7 text-slate-600">{profile.ai_profile?.bio || 'No bio available yet.'}</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div className="rounded-3xl bg-slate-50 p-5 text-sm text-slate-700 ring-1 ring-slate-200">
                 <p className="font-semibold text-slate-900">Height</p>
-                <p className="mt-2">{profile.basic_info.height}</p>
+                <p className="mt-2">{profile.basic_info?.height || 'N/A'}</p>
               </div>
               <div className="rounded-3xl bg-slate-50 p-5 text-sm text-slate-700 ring-1 ring-slate-200">
                 <p className="font-semibold text-slate-900">Spirituality</p>
@@ -105,7 +105,7 @@ export const ProfileDetailPage = () => {
               </div>
               <div className="rounded-3xl bg-slate-50 p-5 text-sm text-slate-700 ring-1 ring-slate-200">
                 <p className="font-semibold text-slate-900">Education</p>
-                <p className="mt-2">{profile.professional_info.education}</p>
+                <p className="mt-2">{profile.professional_info?.education || 'Unknown'}</p>
               </div>
               <div className="rounded-3xl bg-slate-50 p-5 text-sm text-slate-700 ring-1 ring-slate-200">
                 <p className="font-semibold text-slate-900">Languages</p>
@@ -114,7 +114,7 @@ export const ProfileDetailPage = () => {
             </div>
             <div className="rounded-[2rem] bg-slate-50 p-6 ring-1 ring-slate-200">
               <h3 className="text-lg font-semibold text-slate-900">Cosmic Alignment</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-700">Your {profile.astrology.sun_sign} sun brings a magnetic warmth and leadership to her life, while her {profile.astrology.moon_sign} moon adds a layer of intuitive depth that complements your rational nature.</p>
+              <p className="mt-3 text-sm leading-7 text-slate-700">Your {profile.astrology?.sun_sign || 'Unknown'} sun brings a magnetic warmth and leadership to her life, while her {profile.astrology?.moon_sign || 'Unknown'} moon adds a layer of intuitive depth that complements your rational nature.</p>
             </div>
           </div>
         </section>

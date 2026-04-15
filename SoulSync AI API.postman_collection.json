@@ -1,34 +1,11 @@
 {
   "info": {
-    "_postman_id": "soulsync-ai-api-collection",
+    "_postman_id": "e02e2ca7-45a9-45f5-af25-736393d28189",
     "name": "SoulSync AI API",
     "description": "Complete API collection for the SoulSync AI matchmaking backend. Base URL: http://localhost:8000\n\nAuthentication: Most endpoints require a Bearer token obtained from POST /auth/login. Set the `token` variable after login.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41476669"
   },
-  "variable": [
-    {
-      "key": "base_url",
-      "value": "http://localhost:8000",
-      "type": "string"
-    },
-    {
-      "key": "token",
-      "value": "",
-      "type": "string",
-      "description": "Set this after calling POST /auth/login"
-    },
-    {
-      "key": "user_id",
-      "value": "",
-      "type": "string",
-      "description": "Set this after registering/logging in"
-    },
-    {
-      "key": "interest_id",
-      "value": "",
-      "type": "string"
-    }
-  ],
   "item": [
     {
       "name": "Root",
@@ -40,8 +17,12 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/",
-              "host": ["{{base_url}}"],
-              "path": [""]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                ""
+              ]
             },
             "description": "Returns a welcome message to verify the API is running."
           },
@@ -64,12 +45,17 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"securepassword123\",\n  \"role\": \"user\"\n}"
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"securepassword123\",\n  \"role\": \"admin\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/auth/register",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "register"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
             },
             "description": "Register a new user. Returns the created UserOut object."
           },
@@ -88,7 +74,9 @@
                   "    console.log('Token saved:', json.access_token);",
                   "}"
                 ],
-                "type": "text/javascript"
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -102,12 +90,17 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"securepassword123\"\n}"
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"securepassword123\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
             },
             "description": "Login with email/password. Returns access_token. The test script auto-saves it to the `token` variable."
           },
@@ -126,7 +119,9 @@
                   "    console.log('Token saved:', json.access_token);",
                   "}"
                 ],
-                "type": "text/javascript"
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -150,8 +145,13 @@
             },
             "url": {
               "raw": "{{base_url}}/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
             },
             "description": "Login with email/password using form data. Returns access_token. The test script auto-saves it to the `token` variable."
           },
@@ -169,8 +169,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/auth/me",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "me"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
             },
             "description": "Returns the profile of the currently authenticated user."
           },
@@ -188,8 +193,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/{{user_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["users", "{{user_id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "{{user_id}}"
+              ]
             },
             "description": "Fetch a user's public profile by their MongoDB ObjectId. No auth required."
           },
@@ -211,12 +221,17 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"basic_info\": {\n    \"full_name\": \"Alice Singh\",\n    \"age\": 26,\n    \"gender\": \"Female\",\n    \"city\": \"Mumbai\",\n    \"phone\": \"+919876543210\"\n  },\n  \"ai_profile\": {\n    \"bio\": \"Software engineer who loves hiking, cooking, and reading sci-fi novels. Looking for someone genuine and adventurous.\",\n    \"interests\": [\"hiking\", \"cooking\", \"reading\"],\n    \"relationship_goal\": \"long-term\"\n  }\n}"
+              "raw": "{\n  \"basic_info\": {\n    \"full_name\": \"Alice Singh1\",\n    \"age\": 26,\n    \"gender\": \"Male\",\n    \"city\": \"Mumbai\",\n    \"phone\": \"+919876543211\"\n  },\n  \"ai_profile\": {\n    \"bio\": \"Hardware engineer who loves hiking, cooking, and reading sci-fi novels. Looking for someone genuine and adventurous.\",\n    \"interests\": [\"hiking\", \"PCB\", \"reading\"],\n    \"relationship_goal\": \"long-term\"\n  }\n}"
             },
             "url": {
               "raw": "{{base_url}}/users/{{user_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["users", "{{user_id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "{{user_id}}"
+              ]
             },
             "description": "Update a user's profile. Only the owner or an admin can update. If ai_profile.bio is updated, the vector store is also updated."
           },
@@ -238,15 +253,23 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "",
-                  "description": "User's government ID image (jpg/png)"
+                  "description": "User's government ID image (jpg/png)",
+                  "src": [
+                    "",
+                    "/home/parth/Documents/Puzzle Sample.pdf"
+                  ]
                 }
               ]
             },
             "url": {
               "raw": "{{base_url}}/users/upload-id",
-              "host": ["{{base_url}}"],
-              "path": ["users", "upload-id"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "upload-id"
+              ]
             },
             "description": "Upload a government ID image to initiate identity verification. Sets verification.status to 'pending'."
           },
@@ -273,34 +296,15 @@
             },
             "url": {
               "raw": "{{base_url}}/ai/enhance-bio",
-              "host": ["{{base_url}}"],
-              "path": ["ai", "enhance-bio"]
-            },
-            "description": "Uses Gemini AI to rewrite a raw bio into an engaging, polished version. No auth required."
-          },
-          "response": []
-        },
-        {
-          "name": "Enhance Bio (Form Data)",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "raw_text",
-                  "value": "I like movies and food. I am a chill person looking for someone nice.",
-                  "type": "text"
-                }
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ai",
+                "enhance-bio"
               ]
             },
-            "url": {
-              "raw": "{{base_url}}/ai/enhance-bio",
-              "host": ["{{base_url}}"],
-              "path": ["ai", "enhance-bio"]
-            },
-            "description": "Uses Gemini AI to rewrite a raw bio into an engaging, polished version using form data. No auth required."
+            "description": "Uses Gemini AI to rewrite a raw bio into an engaging, polished version. No auth required."
           },
           "response": []
         },
@@ -320,43 +324,19 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"target_id\": \"<TARGET_USER_OBJECTID>\"\n}"
+              "raw": "{\n  \"target_id\": \"{{target_id}}\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/ai/icebreakers",
-              "host": ["{{base_url}}"],
-              "path": ["ai", "icebreakers"]
-            },
-            "description": "Generate AI-powered icebreaker messages based on the bios of the current user and the target user. Both users must have a completed ai_profile.bio."
-          },
-          "response": []
-        },
-        {
-          "name": "Get Icebreakers (Form Data)",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "target_id",
-                  "value": "<TARGET_USER_OBJECTID>",
-                  "type": "text"
-                }
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ai",
+                "icebreakers"
               ]
             },
-            "url": {
-              "raw": "{{base_url}}/ai/icebreakers",
-              "host": ["{{base_url}}"],
-              "path": ["ai", "icebreakers"]
-            },
-            "description": "Generate AI-powered icebreaker messages using form data based on the bios of the current user and the target user. Both users must have a completed ai_profile.bio."
+            "description": "Generate AI-powered icebreaker messages based on the bios of the current user and the target user. Both users must have a completed ai_profile.bio."
           },
           "response": []
         },
@@ -380,49 +360,15 @@
             },
             "url": {
               "raw": "{{base_url}}/ai/generate-astrology",
-              "host": ["{{base_url}}"],
-              "path": ["ai", "generate-astrology"]
-            },
-            "description": "Generates an AI astrology/kundli profile and saves it to the user's document under the `astrology` field."
-          },
-          "response": []
-        },
-        {
-          "name": "Generate Astrology Profile (Form Data)",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "dob",
-                  "value": "1998-03-15",
-                  "type": "text"
-                },
-                {
-                  "key": "time",
-                  "value": "08:30",
-                  "type": "text"
-                },
-                {
-                  "key": "place",
-                  "value": "Delhi, India",
-                  "type": "text"
-                }
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ai",
+                "generate-astrology"
               ]
             },
-            "url": {
-              "raw": "{{base_url}}/ai/generate-astrology",
-              "host": ["{{base_url}}"],
-              "path": ["ai", "generate-astrology"]
-            },
-            "description": "Generates an AI astrology/kundli profile using form data and saves it to the user's document under the `astrology` field."
+            "description": "Generates an AI astrology/kundli profile and saves it to the user's document under the `astrology` field."
           },
           "response": []
         }
@@ -439,22 +385,27 @@
               {
                 "key": "Authorization",
                 "value": "Bearer {{token}}"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"q\": \"looking for an adventurous partner who loves travel\"\n}"
+              "raw": "{\n    \"raw\": \"looking for an adventurous partner who loves travel\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{base_url}}/matches",
-              "host": ["{{base_url}}"],
-              "path": ["matches"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "matches"
+              ]
             },
-            "description": "Performs a ChromaDB vector similarity search using `q` from the JSON request body. Automatically filters for opposite gender based on the current user's profile. Returns a list of matching UserOut objects."
+            "description": "Performs a ChromaDB vector similarity search using the query string. Automatically filters for opposite gender based on the current user's profile. Returns a list of matching UserOut objects."
           },
           "response": []
         }
@@ -479,43 +430,18 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"receiver_id\": \"<TARGET_USER_OBJECTID>\",\n  \"message\": \"Hi! I loved your profile, would love to connect.\"\n}"
+              "raw": "{\n  \"receiver_id\": \"{{target_id}}\",\n  \"message\": \"Hi! I loved your profile, would love.\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/interests",
-              "host": ["{{base_url}}"],
-              "path": ["interests"]
-            },
-            "description": "Send an interest/connection request to another user."
-          },
-          "response": []
-        },
-        {
-          "name": "Send Interest (Form Data)",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "receiver_id",
-                  "value": "<TARGET_USER_OBJECTID>",
-                  "type": "text"
-                }
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "interests"
               ]
             },
-            "url": {
-              "raw": "{{base_url}}/interests",
-              "host": ["{{base_url}}"],
-              "path": ["interests"]
-            },
-            "description": "Send an interest/connection request to another user using form data."
+            "description": "Send an interest/connection request to another user."
           },
           "response": []
         },
@@ -531,8 +457,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/interests/sent",
-              "host": ["{{base_url}}"],
-              "path": ["interests", "sent"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "interests",
+                "sent"
+              ]
             },
             "description": "Returns all interests sent by the current authenticated user."
           },
@@ -550,8 +481,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/interests/received",
-              "host": ["{{base_url}}"],
-              "path": ["interests", "received"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "interests",
+                "received"
+              ]
             },
             "description": "Returns all interests received by the current authenticated user."
           },
@@ -569,8 +505,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/interests/{{interest_id}}?status=accepted",
-              "host": ["{{base_url}}"],
-              "path": ["interests", "{{interest_id}}"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "interests",
+                "{{interest_id}}"
+              ],
               "query": [
                 {
                   "key": "status",
@@ -600,8 +541,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/admin/pending-verifications",
-              "host": ["{{base_url}}"],
-              "path": ["admin", "pending-verifications"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "pending-verifications"
+              ]
             },
             "description": "Admin only. Returns a list of all users with verification.status = 'pending'."
           },
@@ -619,8 +565,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/admin/verify/{{user_id}}?action=approve",
-              "host": ["{{base_url}}"],
-              "path": ["admin", "verify", "{{user_id}}"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "verify",
+                "{{user_id}}"
+              ],
               "query": [
                 {
                   "key": "action",
@@ -645,8 +597,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/admin/verify/{{user_id}}?action=reject",
-              "host": ["{{base_url}}"],
-              "path": ["admin", "verify", "{{user_id}}"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "verify",
+                "{{user_id}}"
+              ],
               "query": [
                 {
                   "key": "action",
@@ -670,14 +628,40 @@
             ],
             "url": {
               "raw": "{{base_url}}/admin/users/{{user_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["admin", "users", "{{user_id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "{{user_id}}"
+              ]
             },
             "description": "Admin only. Permanently deletes a user from both MongoDB and the ChromaDB vector store."
           },
           "response": []
         }
       ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "description": "Set this after calling POST /auth/login"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "description": "Set this after registering/logging in"
+    },
+    {
+      "key": "interest_id",
+      "value": ""
     }
   ]
 }

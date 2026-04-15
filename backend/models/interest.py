@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional
 from datetime import datetime
-from models.user import PyObjectId
+from models.user import PyObjectId, UserOut
 from bson import ObjectId
 
 class InterestBase(BaseModel):
@@ -17,6 +17,10 @@ class InterestOut(InterestBase):
     status: str = "pending" # pending | accepted | declined
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
+    
+    # Populated fields
+    sender: Optional[UserOut] = None
+    receiver: Optional[UserOut] = None
 
     model_config = ConfigDict(
         populate_by_name=True,

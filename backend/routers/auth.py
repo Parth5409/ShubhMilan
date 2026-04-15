@@ -34,6 +34,7 @@ async def login(login_data: LoginRequest, db = Depends(get_mongodb)):
             headers={"WWW-Authenticate": "Bearer"},
         )
     
+    user_doc["id"] = str(user_doc["_id"])
     user = UserOut(**user_doc)
 
     access_token = create_access_token(

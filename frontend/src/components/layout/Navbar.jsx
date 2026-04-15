@@ -11,7 +11,7 @@ export const Navbar = () => {
     <header className="sticky top-0 z-30 bg-white/80 border-b border-slate-200 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="text-xl font-semibold tracking-tight text-slate-900">
-          SoulSync AI
+          ShubhMilan
         </Link>
 
         <button
@@ -46,11 +46,11 @@ export const Navbar = () => {
                 </NavLink>
               </li>
             ) : null}
-            <li>
+            {/* <li>
               <NavLink to="/admin" className={({ isActive }) => isActive ? 'font-semibold text-soul-dark' : 'text-slate-600 hover:text-soul-dark'}>
                 Admin
               </NavLink>
-            </li>
+            </li> */}
             {isAuthenticated ? (
               <li className="mt-2 border-t border-slate-200 pt-4 lg:mt-0 lg:border-none lg:pt-0">
                 <div className="flex items-center gap-3">

@@ -9,7 +9,7 @@ export const Sidebar = ({ className = '' }) => {
           <Grid size={20} />
         </div>
         <div>
-          <p className="text-sm uppercase tracking-[0.25em] text-slate-400">SoulSync AI</p>
+          <p className="text-sm uppercase tracking-[0.25em] text-slate-400">ShubhMilan</p>
           <p className="text-base font-semibold text-slate-900">Digital Sanctuary</p>
         </div>
       </div>

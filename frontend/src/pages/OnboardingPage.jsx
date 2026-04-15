@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useAuth } from '../hooks/useAuth'
-import { generateAstrology, enhanceBio, updateUserProfile } from '../api/mock'
+import { generateAstrology, enhanceBio, updateUserProfile } from '../api/api'
 import { StepIndicator } from '../components/forms/StepIndicator.jsx'
 
 const STORAGE_KEY = 'soulsync_onboarding_draft'

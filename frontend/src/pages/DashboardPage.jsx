@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import { getMatches, sendInterest } from '../api/mock'
+import { getMatches, sendInterest } from '../api/api'
 import { useDebounce } from '../hooks/useDebounce'
 import { ProfileCard } from '../components/ui/ProfileCard.jsx'
 import { SkeletonCard } from '../components/ui/SkeletonCard.jsx'

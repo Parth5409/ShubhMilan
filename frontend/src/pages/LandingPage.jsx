@@ -63,7 +63,7 @@ export const LandingPage = () => {
       <section className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
         <div className="space-y-6">
           <p className="inline-flex rounded-full bg-soul-soft px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-soul-dark">
-            SoulSync AI
+            ShubhMilan
           </p>
           <h1 className="max-w-2xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
             Find Your Soulmate with AI-Powered Matchmaking

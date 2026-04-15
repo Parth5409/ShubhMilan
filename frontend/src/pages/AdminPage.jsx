@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { getPendingVerifications, verifyUser, deleteUser } from '../api/mock'
+import { getPendingVerifications, verifyUser, deleteUser } from '../api/api'
 import { Modal } from '../components/ui/Modal.jsx'
 import { getStatusClass, formatDate } from '../utils/helpers'
 

@@ -6,22 +6,22 @@ export const ProfileCard = ({ profile, onSendInterest, disabled, sent }) => {
   return (
     <article className="overflow-hidden rounded-[2rem] bg-white shadow-card ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl">
       <div className="relative overflow-hidden bg-slate-900">
-        <img src={profile.profile_photo} alt={profile.basic_info.full_name} className="h-64 w-full object-cover" />
+        <img src={profile.profile_photo_url || 'https://via.placeholder.com/400'} alt={profile.basic_info?.full_name || 'User'} className="h-64 w-full object-cover" />
         <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm">
-          <ShieldCheck size={16} /> {profile.verification.status}
+          <ShieldCheck size={16} /> {profile.verification?.status || 'pending'}
         </div>
         <div className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full bg-slate-950/80 px-3 py-2 text-xs font-semibold text-white">
-          <Star size={14} /> {profile.compatibility}% match
+          <Star size={14} /> {profile.compatibility || 0}% match
         </div>
       </div>
       <div className="space-y-4 p-6">
         <div>
-          <h3 className="text-xl font-semibold text-slate-900">{profile.basic_info.full_name}, {profile.basic_info.age}</h3>
-          <p className="text-sm text-slate-500">{profile.basic_info.city} · {profile.professional_info.occupation}</p>
+          <h3 className="text-xl font-semibold text-slate-900">{profile.basic_info?.full_name || 'Unknown'}, {profile.basic_info?.age || 'N/A'}</h3>
+          <p className="text-sm text-slate-500">{profile.basic_info?.city || 'Unknown'} · {profile.professional_info?.occupation || 'Unknown'}</p>
         </div>
-        <p className="text-sm leading-6 text-slate-600">{truncateText(profile.ai_profile.bio, 120)}</p>
+        <p className="text-sm leading-6 text-slate-600">{truncateText(profile.ai_profile?.bio || 'No bio available.', 120)}</p>
         <div className="flex flex-wrap gap-2">
-          {profile.ai_profile.interests.slice(0, 3).map((interest) => (
+          {(profile.ai_profile?.interests || []).slice(0, 3).map((interest) => (
             <span key={interest} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">{interest}</span>
           ))}
         </div>

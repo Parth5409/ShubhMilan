@@ -70,18 +70,18 @@ class UserCreate(UserBase):
     password: str
 
 class UserOut(UserBase):
-    id: PyObjectId = Field(alias="_id", default=None)
+    id: str
     basic_info: Optional[BasicInfo] = None
     astrology: Optional[Astrology] = None
     ai_profile: Optional[AIProfile] = None
     verification: Optional[Verification] = None
     preferences: Optional[Preferences] = None
     profile_photo_url: Optional[str] = None
+    compatibility: Optional[int] = None
 
     model_config = ConfigDict(
         populate_by_name=True,
         arbitrary_types_allowed=True,
-        json_encoders={ObjectId: str}
     )
 
 class BasicInfoUpdate(BaseModel):
