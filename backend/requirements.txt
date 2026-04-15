@@ -1,0 +1,10 @@
+# Python 3.12.13
+fastapi
+uvicorn[standard]
+PyJWT
+bcrypt
+langchain
+langchain-community
+langchain-google-genai
+pydantic-settings
+python-dotenv

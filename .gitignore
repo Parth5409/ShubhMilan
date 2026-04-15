@@ -1,0 +1,55 @@
+# --- Frontend (Node/React) ---
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+dist-ssr/
+frontend/dist-ssr/
+*.local
+frontend/*.local
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- Backend (Python/FastAPI) ---
+__pycache__/
+backend/__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+backend/venv/
+venv/
+ENV/
+env/
+.env
+.flaskenv
+*.bak
+*.swp
+.pytest_cache/
+backend/.pytest_cache/
+.mypy_cache/
+backend/.mypy_cache/
+.ruff_cache/
+backend/.ruff_cache/
+.ipynb_checkpoints/
+
+# --- Environment Variables ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- OS / IDE ---
+.DS_Store
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.gemini/
+.geminiignore
