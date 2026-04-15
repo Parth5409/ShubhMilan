@@ -1,4 +1,4 @@
-# ShubhMilan AI 💞
+# ShubhMilan AI 
 
 ### AI-Powered Personality Based Matchmaking Platform
 

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import { ShieldCheck, Star } from 'lucide-react'
-import { getCompatibilityColor, truncateText } from '../../utils/helpers'
+import { getCompatibilityColor, truncateText, getImageUrl } from '../../utils/helpers'
 
 export const ProfileCard = ({ profile, onSendInterest, disabled, sent }) => {
   return (
     <article className="overflow-hidden rounded-[2rem] bg-white shadow-card ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl">
       <div className="relative overflow-hidden bg-slate-900">
-        <img src={profile.profile_photo_url || 'https://via.placeholder.com/400'} alt={profile.basic_info?.full_name || 'User'} className="h-64 w-full object-cover" />
+        <img src={getImageUrl(profile.profile_photo_url)} alt={profile.basic_info?.full_name || 'User'} className="h-64 w-full object-cover" />
         <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm">
           <ShieldCheck size={16} /> {profile.verification?.status || 'pending'}
         </div>

@@ -6,6 +6,7 @@ import { useAuth } from '../hooks/useAuth'
 import { Modal } from '../components/ui/Modal.jsx'
 import { SkeletonCard } from '../components/ui/SkeletonCard.jsx'
 import { CompatibilityBadge } from '../components/ui/CompatibilityBadge.jsx'
+import { getImageUrl } from '../utils/helpers'
 
 export const ProfileDetailPage = () => {
   const { id } = useParams()
@@ -87,7 +88,7 @@ export const ProfileDetailPage = () => {
             <CompatibilityBadge value={profile.compatibility || null} />
           </div>
 
-          <img src={profile.profile_photo_url || 'https://via.placeholder.com/400'} alt={profile.basic_info?.full_name || 'User'} className="w-full rounded-[2rem] object-cover" />
+          <img src={getImageUrl(profile.profile_photo_url)} alt={profile.basic_info?.full_name || 'User'} className="w-full rounded-[2rem] object-cover" />
 
           <div className="mt-8 space-y-6">
             <div>

@@ -1,3 +1,12 @@
+import { BASE_URL } from '../api/api'
+
+export const getImageUrl = (path) => {
+  if (!path) return 'https://via.placeholder.com/400'
+  if (path.startsWith('http')) return path
+  if (path.startsWith('/static')) return `${BASE_URL}${path}`
+  return path
+}
+
 export const formatDate = (value) => {
   if (!value) return ''
   return new Date(value).toLocaleDateString('en-IN', {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { getPendingVerifications, verifyUser, deleteUser } from '../api/api'
 import { Modal } from '../components/ui/Modal.jsx'
-import { getStatusClass, formatDate } from '../utils/helpers'
+import { getStatusClass, formatDate, getImageUrl } from '../utils/helpers'
 
 export const AdminPage = () => {
   const [users, setUsers] = useState([])
@@ -129,9 +129,9 @@ export const AdminPage = () => {
                   <div className="text-slate-500">{user.email}</div>
                 </td>
                 <td className="px-6 py-4">
-                  <img src={user.id_document.url} alt="ID doc" className="h-14 w-24 rounded-2xl object-cover" />
+                  <img src={getImageUrl(user.verification?.id_image_path)} alt="ID doc" className="h-14 w-24 rounded-2xl object-cover" />
                 </td>
-                <td className="px-6 py-4 text-slate-600">{formatDate(user.id_document.uploaded_at)}</td>
+                <td className="px-6 py-4 text-slate-600">{formatDate(user.verification?.submitted_at)}</td>
                 <td className="px-6 py-4">
                   <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${getStatusClass(user.verification.status)}`}>{user.verification.status}</span>
                 </td>

@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import { useAuth } from '../hooks/useAuth'
 import { generateAstrology, enhanceBio, updateUserProfile, uploadProfilePhoto } from '../api/api'
 import { StepIndicator } from '../components/forms/StepIndicator.jsx'
+import { getImageUrl } from '../utils/helpers'
 
 const STORAGE_KEY = 'soulsync_onboarding_draft'
 
@@ -171,7 +172,7 @@ export const OnboardingPage = () => {
                 <div className="flex flex-col items-center gap-4 border-b border-slate-100 pb-6">
                   <div className="relative h-32 w-32 overflow-hidden rounded-full bg-slate-100 ring-2 ring-slate-200">
                     {photoPreview || values.profile_photo_url ? (
-                      <img src={photoPreview || `http://localhost:8000${values.profile_photo_url}`} alt="Profile" className="h-full w-full object-cover" />
+                      <img src={photoPreview || getImageUrl(values.profile_photo_url)} alt="Profile" className="h-full w-full object-cover" />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-slate-400">
                         <svg className="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -348,7 +349,7 @@ export const OnboardingPage = () => {
                   {values.profile_photo_url && (
                     <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:col-span-2">
                       <p className="text-sm text-slate-500">Profile Photo</p>
-                      <img src={`http://localhost:8000${values.profile_photo_url}`} alt="Preview" className="mt-2 h-32 w-32 rounded-2xl object-cover" />
+                      <img src={getImageUrl(values.profile_photo_url)} alt="Preview" className="mt-2 h-32 w-32 rounded-2xl object-cover" />
                     </div>
                   )}
                 </div>
