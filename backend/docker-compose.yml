@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webathon-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    # Ensure local environment variables are loaded
+    env_file:
+      - .env
+    environment:
+      - MONGO_URI=mongodb://aithon-mongodb:27017
+      - DB_NAME=soulsync
+    depends_on:
+      - mongodb
+    networks:
+      - webathon-network
+
+  mongodb:
+    image: mongo:7.0
+    container_name: webathon-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - webathon-network
+
+networks:
+  webathon-network:
+    driver: bridge
+
+volumes:
+  mongo_data:

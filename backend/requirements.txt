@@ -1,10 +1,14 @@
-# Python 3.12.13
 fastapi
 uvicorn[standard]
-PyJWT
-bcrypt
+motor
+python-jose[cryptography]
+passlib[bcrypt]
 langchain
 langchain-community
 langchain-google-genai
-pydantic-settings
+google-generativeai
+chromadb
+python-multipart
 python-dotenv
+pydantic[email]
+pydantic-settings
