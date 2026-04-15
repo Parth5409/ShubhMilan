@@ -5,7 +5,7 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
 # Install system dependencies
@@ -20,9 +20,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
+# FIX 2: Pre-create chroma_db directory and set permissions
+RUN mkdir -p /app/chroma_db && chmod 777 /app/chroma_db
+
 # Expose the port
 EXPOSE 8000
 
-# FIX: Changed "app.main:app" to "main:app" 
-# because main.py is in your root folder
+# Run the application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

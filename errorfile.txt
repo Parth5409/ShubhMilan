@@ -1,104 +1,27 @@
-aithon-backend  | INFO:     Will watch for changes in these directories: ['/app']
-aithon-backend  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-aithon-backend  | INFO:     Started reloader process [1] using WatchFiles
-aithon-backend  | Process SpawnProcess-1:
-aithon-backend  | Traceback (most recent call last):
-aithon-backend  |   File "/usr/local/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
-aithon-backend  |     self.run()
-aithon-backend  |   File "/usr/local/lib/python3.12/multiprocessing/process.py", line 108, in run
-aithon-backend  |     self._target(*self._args, **self._kwargs)
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-aithon-backend  |     target(sockets=sockets)
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/server.py", line 75, in run
-aithon-backend  |     return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-aithon-backend  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
-aithon-backend  |     return runner.run(main)
-aithon-backend  |            ^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
-aithon-backend  |     return self._loop.run_until_complete(task)
-aithon-backend  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/server.py", line 79, in serve
-aithon-backend  |     await self._serve(sockets)
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/server.py", line 86, in _serve
-aithon-backend  |     config.load()
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/config.py", line 441, in load
-aithon-backend  |     self.loaded_app = import_from_string(self.app)
-aithon-backend  |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
-aithon-backend  |     module = importlib.import_module(module_str)
-aithon-backend  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/importlib/__init__.py", line 90, in import_module
-aithon-backend  |     return _bootstrap._gcd_import(name[level:], package, level)
-aithon-backend  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
-aithon-backend  |   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-aithon-backend  |   File "/app/main.py", line 5, in <module>
-aithon-backend  |     from routers import auth, users, ai, matches, interests, admin
-aithon-backend  |   File "/app/routers/auth.py", line 3, in <module>
-aithon-backend  |     from core.db import get_mongodb
-aithon-backend  |   File "/app/core/db.py", line 7, in <module>
-aithon-backend  |     db = client.get_database()
-aithon-backend  |          ^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/motor/metaprogramming.py", line 235, in wrapper
-aithon-backend  |     result = method(self_.delegate, *args, **kwargs)
-aithon-backend  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1548, in get_database
-aithon-backend  |     raise ConfigurationError("No default database defined")
-aithon-backend  | pymongo.errors.ConfigurationError: No default database defined
-aithon-backend  | WARNING:  WatchFiles detected changes in 'routers/interests.py'. Reloading...
-aithon-backend  | Process SpawnProcess-2:
-aithon-backend  | Traceback (most recent call last):
-aithon-backend  |   File "/usr/local/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
-aithon-backend  |     self.run()
-aithon-backend  |   File "/usr/local/lib/python3.12/multiprocessing/process.py", line 108, in run
-aithon-backend  |     self._target(*self._args, **self._kwargs)
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-aithon-backend  |     target(sockets=sockets)
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/server.py", line 75, in run
-aithon-backend  |     return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-aithon-backend  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
-aithon-backend  |     return runner.run(main)
-aithon-backend  |            ^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
-aithon-backend  |     return self._loop.run_until_complete(task)
-aithon-backend  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/server.py", line 79, in serve
-aithon-backend  |     await self._serve(sockets)
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/server.py", line 86, in _serve
-aithon-backend  |     config.load()
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/config.py", line 441, in load
-aithon-backend  |     self.loaded_app = import_from_string(self.app)
-aithon-backend  |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
-aithon-backend  |     module = importlib.import_module(module_str)
-aithon-backend  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/importlib/__init__.py", line 90, in import_module
-aithon-backend  |     return _bootstrap._gcd_import(name[level:], package, level)
-aithon-backend  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
-aithon-backend  |   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
-aithon-backend  |   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-aithon-backend  |   File "/app/main.py", line 5, in <module>
-aithon-backend  |     from routers import auth, users, ai, matches, interests, admin
-aithon-backend  |   File "/app/routers/auth.py", line 3, in <module>
-aithon-backend  |     from core.db import get_mongodb
-aithon-backend  |   File "/app/core/db.py", line 7, in <module>
-aithon-backend  |     db = client.get_database()
-aithon-backend  |          ^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/motor/metaprogramming.py", line 235, in wrapper
-aithon-backend  |     result = method(self_.delegate, *args, **kwargs)
-aithon-backend  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-aithon-backend  |   File "/usr/local/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1548, in get_database
-aithon-backend  |     raise ConfigurationError("No default database defined")
-aithon-backend  | pymongo.errors.ConfigurationError: No default database defined
+venv/bin/python3 -c "import main"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/parth/Programming/Webathon/backend/main.py", line 5, in <module>
+    from routers import auth, users, ai, matches, interests, admin
+  File "/home/parth/Programming/Webathon/backend/routers/auth.py", line 3, in <module>
+    from core.db import get_mongodb
+  File "/home/parth/Programming/Webathon/backend/core/db.py", line 13, in <module>
+    chroma_client = chromadb.PersistentClient(path=settings.CHROMA_PERSIST_PATH)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/parth/Programming/Webathon/backend/venv/lib/python3.12/site-packages/chromadb/__init__.py", line 226, in PersistentClient
+    return ClientCreator(tenant=tenant, database=database, settings=settings)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/parth/Programming/Webathon/backend/venv/lib/python3.12/site-packages/chromadb/api/client.py", line 69, in __init__
+    super().__init__(settings=settings)
+  File "/home/parth/Programming/Webathon/backend/venv/lib/python3.12/site-packages/chromadb/api/shared_system_client.py", line 25, in __init__
+    SharedSystemClient._create_system_if_not_exists(self._identifier, settings)
+  File "/home/parth/Programming/Webathon/backend/venv/lib/python3.12/site-packages/chromadb/api/shared_system_client.py", line 39, in _create_system_if_not_exists
+    new_system.start()
+  File "/home/parth/Programming/Webathon/backend/venv/lib/python3.12/site-packages/chromadb/config.py", line 467, in start
+    component.start()
+  File "/home/parth/Programming/Webathon/backend/venv/lib/python3.12/site-packages/chromadb/api/rust.py", line 122, in start
+    self.bindings = chromadb_rust_bindings.Bindings(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+chromadb.errors.InternalError: error returned from database: (code: 8) attempt to write a readonly database
+
+~/Programming/Webathon/backend master*

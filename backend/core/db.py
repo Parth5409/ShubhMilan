@@ -4,7 +4,10 @@ from core.config import settings
 
 # MongoDB setup
 client = AsyncIOMotorClient(settings.MONGO_URI)
-db = client.get_database()
+
+# FIX: Pass the DB_NAME from your settings to select the specific database
+# You can use bracket notation client[settings.DB_NAME] or get_database(settings.DB_NAME)
+db = client[settings.DB_NAME]
 
 # ChromaDB setup
 chroma_client = chromadb.PersistentClient(path=settings.CHROMA_PERSIST_PATH)

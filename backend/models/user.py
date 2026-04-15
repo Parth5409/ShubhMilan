@@ -16,7 +16,7 @@ class PyObjectId(ObjectId):
                     core_schema.no_info_plain_validator_function(lambda x: ObjectId(x)),
                 ])
             ]),
-            serialization=core_schema.plain_serializer_function_handler(lambda x: str(x))
+            serialization=core_schema.plain_serializer_function_ser_schema(lambda x: str(x))
         )
 
 class BasicInfo(BaseModel):

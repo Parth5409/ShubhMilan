@@ -10,12 +10,14 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-    # Ensure local environment variables are loaded
+      # FIX 1: Named volume for chroma_db overrides the bind-mount permissions
+      - chroma_data:/app/chroma_db
     env_file:
       - .env
     environment:
-      - MONGO_URI=mongodb://aithon-mongodb:27017
+      - MONGO_URI=mongodb://webathon-mongodb:27017
       - DB_NAME=soulsync
+      - CHROMA_PERSIST_PATH=/app/chroma_db
     depends_on:
       - mongodb
     networks:
@@ -38,3 +40,5 @@ networks:
 
 volumes:
   mongo_data:
+  # FIX 1: Define the named volume
+  chroma_data:

@@ -1,0 +1,528 @@
+{
+  "info": {
+    "_postman_id": "soulsync-ai-api-collection",
+    "name": "SoulSync AI API",
+    "description": "Complete API collection for the SoulSync AI matchmaking backend. Base URL: http://localhost:8000\n\nAuthentication: Most endpoints require a Bearer token obtained from POST /auth/login. Set the `token` variable after login.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string",
+      "description": "Set this after calling POST /auth/login"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string",
+      "description": "Set this after registering/logging in"
+    },
+    {
+      "key": "interest_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Root",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            },
+            "description": "Returns a welcome message to verify the API is running."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"securepassword123\",\n  \"role\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Register a new user. Returns the created UserOut object."
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.access_token) {",
+                  "    pm.collectionVariables.set('token', json.access_token);",
+                  "    console.log('Token saved:', json.access_token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "alice@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "securepassword123",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Login with email/password (OAuth2 form). Returns access_token. The test script auto-saves it to the `token` variable."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current User (Me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            },
+            "description": "Returns the profile of the currently authenticated user."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["users", "{{user_id}}"]
+            },
+            "description": "Fetch a user's public profile by their MongoDB ObjectId. No auth required."
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"basic_info\": {\n    \"full_name\": \"Alice Singh\",\n    \"age\": 26,\n    \"gender\": \"Female\",\n    \"city\": \"Mumbai\",\n    \"phone\": \"+919876543210\"\n  },\n  \"ai_profile\": {\n    \"bio\": \"Software engineer who loves hiking, cooking, and reading sci-fi novels. Looking for someone genuine and adventurous.\",\n    \"interests\": [\"hiking\", \"cooking\", \"reading\"],\n    \"relationship_goal\": \"long-term\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["users", "{{user_id}}"]
+            },
+            "description": "Update a user's profile. Only the owner or an admin can update. If ai_profile.bio is updated, the vector store is also updated."
+          },
+          "response": []
+        },
+        {
+          "name": "Upload ID for Verification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "",
+                  "description": "User's government ID image (jpg/png)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/users/upload-id",
+              "host": ["{{base_url}}"],
+              "path": ["users", "upload-id"]
+            },
+            "description": "Upload a government ID image to initiate identity verification. Sets verification.status to 'pending'."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "AI",
+      "item": [
+        {
+          "name": "Enhance Bio",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"raw_text\": \"I like movies and food. I am a chill person looking for someone nice.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/ai/enhance-bio",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "enhance-bio"]
+            },
+            "description": "Uses Gemini AI to rewrite a raw bio into an engaging, polished version. No auth required."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Icebreakers",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target_id\": \"<TARGET_USER_OBJECTID>\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/ai/icebreakers",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "icebreakers"]
+            },
+            "description": "Generate AI-powered icebreaker messages based on the bios of the current user and the target user. Both users must have a completed ai_profile.bio."
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Astrology Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dob\": \"1998-03-15\",\n  \"time\": \"08:30\",\n  \"place\": \"Delhi, India\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/ai/generate-astrology",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "generate-astrology"]
+            },
+            "description": "Generates an AI astrology/kundli profile and saves it to the user's document under the `astrology` field."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Matches",
+      "item": [
+        {
+          "name": "Get Matches (Vector Search)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/matches?q=looking for an adventurous partner who loves travel",
+              "host": ["{{base_url}}"],
+              "path": ["matches"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "looking for an adventurous partner who loves travel",
+                  "description": "Natural language search query used for vector similarity matching"
+                }
+              ]
+            },
+            "description": "Performs a ChromaDB vector similarity search using the query string. Automatically filters for opposite gender based on the current user's profile. Returns a list of matching UserOut objects."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Interests",
+      "item": [
+        {
+          "name": "Send Interest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receiver_id\": \"<TARGET_USER_OBJECTID>\",\n  \"message\": \"Hi! I loved your profile, would love to connect.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/interests",
+              "host": ["{{base_url}}"],
+              "path": ["interests"]
+            },
+            "description": "Send an interest/connection request to another user."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Sent Interests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/interests/sent",
+              "host": ["{{base_url}}"],
+              "path": ["interests", "sent"]
+            },
+            "description": "Returns all interests sent by the current authenticated user."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Received Interests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/interests/received",
+              "host": ["{{base_url}}"],
+              "path": ["interests", "received"]
+            },
+            "description": "Returns all interests received by the current authenticated user."
+          },
+          "response": []
+        },
+        {
+          "name": "Respond to Interest (Accept/Decline)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/interests/{{interest_id}}?status=accepted",
+              "host": ["{{base_url}}"],
+              "path": ["interests", "{{interest_id}}"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "accepted",
+                  "description": "Use 'accepted' or 'declined'"
+                }
+              ]
+            },
+            "description": "Accept or decline an interest request. Only the receiver of the interest can call this endpoint."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Pending Verifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/pending-verifications",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "pending-verifications"]
+            },
+            "description": "Admin only. Returns a list of all users with verification.status = 'pending'."
+          },
+          "response": []
+        },
+        {
+          "name": "Verify User (Approve)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/verify/{{user_id}}?action=approve",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "verify", "{{user_id}}"],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "approve",
+                  "description": "Use 'approve' or 'reject'"
+                }
+              ]
+            },
+            "description": "Admin only. Approve a user's identity verification. Sets verification.status to 'verified'."
+          },
+          "response": []
+        },
+        {
+          "name": "Verify User (Reject)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/verify/{{user_id}}?action=reject",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "verify", "{{user_id}}"],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "reject"
+                }
+              ]
+            },
+            "description": "Admin only. Reject a user's identity verification. Sets verification.status to 'rejected'."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "users", "{{user_id}}"]
+            },
+            "description": "Admin only. Permanently deletes a user from both MongoDB and the ChromaDB vector store."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

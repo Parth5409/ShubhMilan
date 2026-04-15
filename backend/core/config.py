@@ -2,7 +2,8 @@ from pydantic_settings import BaseSettings
 from typing import Optional
 
 class Settings(BaseSettings):
-    MONGO_URI: str = "mongodb://localhost:27017/soulsync"
+    MONGO_URI: str = "mongodb://webathon-mongodb:27017"
+    DB_NAME: str = "soulsync"
     GEMINI_API_KEY: str
     JWT_SECRET: str
     JWT_ALGORITHM: str = "HS256"
